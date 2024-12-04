@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:padding="16dp">
 
+ <!--Criando toolbar com ícone para ir ao perfil de usuario-->
+    <!--Criada pasta MENU dentro da pasta RES para comportar a toolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        app:menu="@menu/toolbar_menu" />
+
     <!-- Barra de pesquisa -->
+
+    <!-- Título -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search recipes"
         android:background="@android:drawable/edit_text"
-        android:padding="10dp"
-        android:drawableLeft="@android:drawable/ic_menu_search"/>
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:hint="Search recipes"
+        android:padding="15dp" />
 
-    <!-- Título -->
     <TextView
         android:id="@+id/topRatedTitle"
         android:layout_width="wrap_content"
