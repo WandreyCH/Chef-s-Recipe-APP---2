@@ -52,13 +52,13 @@ public class CreateRecipeActivity extends AppCompatActivity {
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            // Buscar o objeto Chef no Firebase
-            DatabaseReference chefRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("chefProfile");
-            chefRef.get().addOnCompleteListener(task -> {
+            // Buscar o objeto User no Firebase
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+            userRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful() && task.getResult().exists()) {
-                    Chef chef = task.getResult().getValue(Chef.class);
-                    if (chef != null) {
-                        String chefName = chef.getName();  // Nome do chef
+                    User user = task.getResult().getValue(User.class);
+                    if (user != null) {
+                        String chefName = user.getName();  // Recupera o nome do chef
 
                         // Criar a receita com o nome do chef incluído
                         Recipe recipe = new Recipe(name, description, ingredients, preparation, chefName);
@@ -70,9 +70,11 @@ public class CreateRecipeActivity extends AppCompatActivity {
                                         Toast.makeText(CreateRecipeActivity.this, "Failed to Create Recipe", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+                    } else {
+                        Toast.makeText(CreateRecipeActivity.this, "Chef name not found", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(CreateRecipeActivity.this, "Chef profile not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateRecipeActivity.this, "Failed to load chef profile", Toast.LENGTH_SHORT).show();
                 }
             });
         }

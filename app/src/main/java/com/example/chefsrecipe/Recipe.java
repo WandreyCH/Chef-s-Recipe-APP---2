@@ -2,18 +2,18 @@ package com.example.chefsrecipe;
 
 public class Recipe {
 
-    private String chefName, name, description, ingredients, preparation;
+    private String name, description, ingredients, preparation, chefName;
 
     public Recipe() {
         // Default constructor required for calls to DataSnapshot.getValue(Recipe.class)
     }
 
-    public Recipe(String chefName, String name, String description, String ingredients, String preparation) {
-        this.chefName = chefName;
+    public Recipe(String name, String description, String ingredients, String preparation, String chefName) {
         this.name = name;
-        this.description = "";
-        this.ingredients = "";
-        this.preparation = "";
+        this.description = description;
+        this.ingredients = ingredients;
+        this.preparation = preparation;
+        this.chefName = chefName;
     }
 
     public String getChefName() {
@@ -37,7 +37,7 @@ public class Recipe {
     }
 
     public void setDescription(String description) {
-        this.description = "";
+        this.description = description;
     }
 
     public String getIngredients() {
@@ -45,7 +45,7 @@ public class Recipe {
     }
 
     public void setIngredients(String ingredients) {
-        this.ingredients = "";
+        this.ingredients = ingredients;
     }
 
     public String getPreparation() {
@@ -53,7 +53,7 @@ public class Recipe {
     }
 
     public void setPreparation(String preparation) {
-        this.preparation = "";
+        this.preparation = preparation;
     }
 
 }
