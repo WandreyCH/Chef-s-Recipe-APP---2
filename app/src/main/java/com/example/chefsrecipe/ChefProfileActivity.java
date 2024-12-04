@@ -41,12 +41,36 @@ public class ChefProfileActivity extends AppCompatActivity {
         createRecipeButton = findViewById(R.id.createRecipeButton);
         chefNameText = findViewById(R.id.chefNameText);
 
+        // Carregar o nome do chef ao iniciar a atividade
+        loadChefProfile();
+
         saveProfileButton.setOnClickListener(v -> saveProfile());
 
         createRecipeButton.setOnClickListener(v -> {
             Intent intent = new Intent(ChefProfileActivity.this, CreateRecipeActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void loadChefProfile() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            // Recuperar os dados do usuário do Firebase
+            databaseReference.child(userId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    User user = task.getResult().getValue(User.class);
+                    if (user != null) {
+                        chefNameText.setText(user.getName());  // Define o nome do chef no TextView
+                    } else {
+                        Toast.makeText(ChefProfileActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ChefProfileActivity.this, "Failed to load profile", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void saveProfile() {
@@ -61,29 +85,20 @@ public class ChefProfileActivity extends AppCompatActivity {
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            // Save the chef's description
+            // Salvar a descrição do chef no banco de dados
             Chef chefProfile = new Chef();
+            chefProfile.setChefDescription(description);  // Adiciona a descrição
+
             databaseReference.child(userId).child("chefProfile").setValue(chefProfile)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            savedDescriptionText.setText(description); // Set the saved text
-                            savedDescriptionText.setVisibility(View.VISIBLE); // Show the TextView
+                            savedDescriptionText.setText(description); // Atualiza o TextView da descrição
+                            savedDescriptionText.setVisibility(View.VISIBLE); // Exibe a descrição salva
                             Toast.makeText(ChefProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(ChefProfileActivity.this, "Failed to Update Profile", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-            databaseReference.child(userId).get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    User user = task.getResult().getValue(User.class);
-                    if (user != null) {
-                        chefNameText.setText(user.getName());  // Define o nome do chef no TextView
-                    }
-                } else {
-                    Toast.makeText(ChefProfileActivity.this, "Failed to load profile", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 }

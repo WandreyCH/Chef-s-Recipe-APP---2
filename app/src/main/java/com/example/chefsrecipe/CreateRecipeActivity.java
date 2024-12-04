@@ -51,17 +51,30 @@ public class CreateRecipeActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            Recipe recipe = new Recipe(name, description, ingredients, preparation);
 
-            // Save the recipe
-            databaseReference.child(userId).push().setValue(recipe)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(CreateRecipeActivity.this, "Recipe Created", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(CreateRecipeActivity.this, "Failed to Create Recipe", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            // Buscar o objeto Chef no Firebase
+            DatabaseReference chefRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("chefProfile");
+            chefRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult().exists()) {
+                    Chef chef = task.getResult().getValue(Chef.class);
+                    if (chef != null) {
+                        String chefName = chef.getName();  // Nome do chef
+
+                        // Criar a receita com o nome do chef incluído
+                        Recipe recipe = new Recipe(name, description, ingredients, preparation, chefName);
+                        databaseReference.child(userId).push().setValue(recipe)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        Toast.makeText(CreateRecipeActivity.this, "Recipe Created", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(CreateRecipeActivity.this, "Failed to Create Recipe", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                } else {
+                    Toast.makeText(CreateRecipeActivity.this, "Chef profile not found", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

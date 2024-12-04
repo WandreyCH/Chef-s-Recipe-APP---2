@@ -56,10 +56,10 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         // Simulando dados (serão substituídos por dados reais do backend futuramente)
         List<Recipe> topRatedRecipes = new ArrayList<>();
-        topRatedRecipes.add(new Recipe("Pasta Carbonara", "aaaaa","bbbbb","ccccc"));
-        topRatedRecipes.add(new Recipe("Sushi Deluxe", "aaaaa","bbbbb","ccccc"));
-        topRatedRecipes.add(new Recipe("Chocolate Cake", "aaaaa","bbbbb","ccccc"));
-        topRatedRecipes.add(new Recipe("Grilled Salmon", "aaaaa","bbbbb","ccccc"));
+        topRatedRecipes.add(new Recipe("", "Pasta Carbonara", "aaaaa","bbbbb","ccccc"));
+        topRatedRecipes.add(new Recipe("", "Sushi Deluxe", "aaaaa","bbbbb","ccccc"));
+        topRatedRecipes.add(new Recipe("", "Chocolate Cake", "aaaaa","bbbbb","ccccc"));
+        topRatedRecipes.add(new Recipe("", "Grilled Salmon", "aaaaa","bbbbb","ccccc"));
 
 //        // Configura o Adapter
 //        adapter = new RecipeAdapter(topRatedRecipes);
