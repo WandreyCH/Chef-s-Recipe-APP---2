@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://chef-s-recipe-app-e0cae-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">740755362204</string>
+    <string name="google_api_key" translatable="false">AIzaSyAUHqdwM68ak7yLlvnVKPqpCw43O_SerAI</string>
+    <string name="google_app_id" translatable="false">1:740755362204:android:272d488c1989e2acdd3859</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAUHqdwM68ak7yLlvnVKPqpCw43O_SerAI</string>
+    <string name="google_storage_bucket" translatable="false">chef-s-recipe-app-e0cae.firebasestorage.app</string>
+    <string name="project_id" translatable="false">chef-s-recipe-app-e0cae</string>
+</resources>

@@ -1,0 +1,3 @@
+com.example.chefsrecipe.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme
