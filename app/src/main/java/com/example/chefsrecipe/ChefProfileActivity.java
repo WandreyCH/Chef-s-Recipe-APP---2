@@ -20,7 +20,7 @@ public class ChefProfileActivity extends AppCompatActivity {
 
     ImageView chefImage;
     EditText chefDescription;
-    Button saveProfileButton, createRecipeButton;
+    Button saveProfileButton, createRecipeButton, profileUpdate, buttonLogout;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
     TextView savedDescriptionText;
@@ -39,10 +39,16 @@ public class ChefProfileActivity extends AppCompatActivity {
         savedDescriptionText = findViewById(R.id.savedDescriptionText);
         saveProfileButton = findViewById(R.id.saveProfileButton);
         createRecipeButton = findViewById(R.id.createRecipeButton);
+        profileUpdate = findViewById(R.id.updateProfile);
+        buttonLogout = findViewById(R.id.logoutButton);
         chefNameText = findViewById(R.id.chefNameText);
 
         // Carregar o nome do chef ao iniciar a atividade
         loadChefProfile();
+
+        profileUpdate.setOnClickListener(v -> update());
+
+        buttonLogout.setOnClickListener(v -> logout());
 
         saveProfileButton.setOnClickListener(v -> saveProfile());
 
@@ -51,6 +57,7 @@ public class ChefProfileActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
 
     private void loadChefProfile() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -100,5 +107,17 @@ public class ChefProfileActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+    // Método de logout
+    private void logout() {
+        mAuth.signOut();  // Desconecta o usuário do Firebase
+        Intent intent = new Intent(ChefProfileActivity.this, LoginScreenActivity.class); // Direciona para a tela de login
+        startActivity(intent);
+        finish();  // Finaliza a atividade atual
+    }
+    private void update() {
+        Intent intent = new Intent(ChefProfileActivity.this, UpdateScreenActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ChefsRecipe"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateRecipeActivity"
             android:exported="false" />
         <activity

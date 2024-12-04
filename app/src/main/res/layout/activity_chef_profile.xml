@@ -57,7 +57,7 @@
         android:id="@+id/saveProfileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Profile"
+        android:text="Save Description"
         android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo branco -->
 
     <!-- Button to Create Recipe -->
@@ -67,6 +67,22 @@
         android:layout_height="wrap_content"
         android:text="Create Recipe"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo branco -->
+        android:background="@drawable/rounded_edittext" />
 
+    <!-- Button to Logout -->
+    <Button
+        android:id="@+id/updateProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo similar aos outros -->
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo similar aos outros -->
 </LinearLayout>
