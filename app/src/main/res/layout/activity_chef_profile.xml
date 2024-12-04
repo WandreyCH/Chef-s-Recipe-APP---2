@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- ImageView for Chef's Profile Image -->
+    <ImageView
+        android:id="@+id/chefImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@drawable/chef"
+        android:contentDescription="Chef's Profile Image"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Mostra o nome do chef vindo do objeto User -->
+    <TextView
+        android:id="@+id/chefNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chef's Name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <!--Textview para mostrar a descrição do chef após clicar no botão-->
+    <TextView
+        android:id="@+id/savedDescriptionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No description yet."
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- EditText for Chef's Description -->
+    <EditText
+        android:id="@+id/chefDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write a description about yourself"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:minHeight="120dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button to Save Profile -->
+    <Button
+        android:id="@+id/saveProfileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Profile"/>
+
+    <!-- Button to Create Recipe -->
+    <Button
+        android:id="@+id/createRecipeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Recipe"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>

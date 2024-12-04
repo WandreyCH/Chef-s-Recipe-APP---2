@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- EditText for Recipe Name -->
+    <EditText
+        android:id="@+id/recipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Recipe Name"
+        android:inputType="text"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- EditText for Recipe Description -->
+    <EditText
+        android:id="@+id/recipeDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Recipe Description"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:minHeight="100dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- EditText for Ingredients -->
+    <EditText
+        android:id="@+id/recipeIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingredients"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:minHeight="100dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- EditText for Recipe Preparation -->
+    <EditText
+        android:id="@+id/recipePreparation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Preparation Method"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:minHeight="100dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button to Save Recipe -->
+    <Button
+        android:id="@+id/saveRecipeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Recipe"/>
+
+</LinearLayout>
