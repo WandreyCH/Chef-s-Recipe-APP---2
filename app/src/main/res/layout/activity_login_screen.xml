@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:backgroundTint="@color/red"
     android:padding="16dp"
     android:background="@color/white">
 
@@ -20,13 +21,16 @@
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dip"
+        android:background="@color/white"
+        android:padding="5dp"
         android:hint="Email" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="5dp"
         android:hint="Password"
         android:inputType="textPassword" />
 
@@ -43,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don't have an account? Click here"
-        android:textColor="@color/black"
+        android:textColor="@color/blue"
         android:paddingTop="16dp"/>
 
 

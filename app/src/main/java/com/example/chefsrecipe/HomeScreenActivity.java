@@ -45,7 +45,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         topRatedTitle = findViewById(R.id.topRatedTitle);
         ratingBar1 = findViewById(R.id.ratingBar1);
 
-        mAuth = new FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -88,7 +88,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 // Navegar para a página de perfil de Home Cook (crie a classe HomeCookProfileActivity se necessário)
-                Intent intent = new Intent(HomeScreenActivity.this, HomeCookProfileActivity.class);
+                Intent intent = new Intent(HomeScreenActivity.this, HomeCookProfile.class);
                 startActivity(intent);
             }
         }
