@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FFF1F1"
+    android:gravity="center_horizontal"
+    android:paddingTop="32dp"
+    android:paddingBottom="32dp">
+
+    <!-- Título da página -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Recipe"
+        android:textSize="24sp"
+        android:textColor="#D32F2F"
+        android:layout_marginBottom="24dp"
+        android:textStyle="bold"/>
 
     <!-- EditText for Recipe Name -->
     <EditText
@@ -12,7 +29,12 @@
         android:layout_height="wrap_content"
         android:hint="Recipe Name"
         android:inputType="text"
-        android:layout_marginBottom="16dp"/>
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"/>
 
     <!-- EditText for Recipe Description -->
     <EditText
@@ -22,8 +44,13 @@
         android:hint="Recipe Description"
         android:inputType="textMultiLine"
         android:gravity="top"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
         android:minHeight="100dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_gravity="center_horizontal"/>
 
     <!-- EditText for Ingredients -->
     <EditText
@@ -33,8 +60,13 @@
         android:hint="Ingredients"
         android:inputType="textMultiLine"
         android:gravity="top"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
         android:minHeight="100dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_gravity="center_horizontal"/>
 
     <!-- EditText for Recipe Preparation -->
     <EditText
@@ -44,14 +76,25 @@
         android:hint="Preparation Method"
         android:inputType="textMultiLine"
         android:gravity="top"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:layout_marginBottom="32dp"
         android:minHeight="100dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_gravity="center_horizontal"/>
 
     <!-- Button to Save Recipe -->
     <Button
         android:id="@+id/saveRecipeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Recipe"/>
+        android:text="Save Recipe"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#D32F2F"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"/>
 
 </LinearLayout>

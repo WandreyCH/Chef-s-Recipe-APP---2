@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/red"> <!-- Definindo cor de fundo -->
 
     <!-- ImageView for Chef's Profile Image -->
     <ImageView
@@ -24,9 +25,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_edittext" />
 
-    <!--Textview para mostrar a descrição do chef após clicar no botão-->
+    <!-- Textview para mostrar a descrição do chef após clicar no botão -->
     <TextView
         android:id="@+id/savedDescriptionText"
         android:layout_width="match_parent"
@@ -35,7 +37,8 @@
         android:textSize="16sp"
         android:textStyle="italic"
         android:visibility="gone"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:background="@color/white" /> <!-- Adicionando fundo branco -->
 
     <!-- EditText for Chef's Description -->
     <EditText
@@ -46,14 +49,16 @@
         android:inputType="textMultiLine"
         android:gravity="top"
         android:minHeight="120dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/edit_text" /> <!-- Fundo de input de texto padrão -->
 
     <!-- Button to Save Profile -->
     <Button
         android:id="@+id/saveProfileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Profile"/>
+        android:text="Save Profile"
+        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo branco -->
 
     <!-- Button to Create Recipe -->
     <Button
@@ -61,6 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Recipe"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo branco -->
 
 </LinearLayout>

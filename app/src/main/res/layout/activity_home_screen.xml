@@ -8,8 +8,7 @@
     android:background="@color/red"
     android:padding="16dp">
 
- <!--Criando toolbar com ícone para ir ao perfil de usuario-->
-    <!--Criada pasta MENU dentro da pasta RES para comportar a toolbar-->
+    <!-- Toolbar com ícone para ir ao perfil do usuário -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,8 +20,6 @@
         app:menu="@menu/toolbar_menu" />
 
     <!-- Barra de pesquisa -->
-
-    <!-- Layout_bellow is used to move the search bar to bellow the toolbar-->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
@@ -51,6 +48,7 @@
         android:background="@color/white"
         android:layout_below="@id/topRatedTitle"
         android:layout_marginTop="10dp"/>
+
     <!-- Lista de receitas -->
     <LinearLayout
         android:id="@+id/recipeList"
@@ -95,7 +93,7 @@
                     android:id="@+id/userComment1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User: \Delicious!\ "
+                    android:text="User: Delicious!"
                     android:textSize="14sp"/>
 
                 <RatingBar
@@ -127,7 +125,6 @@
                 android:id="@+id/recipeDetails2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:layout_toRightOf="@id/recipeImage2"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
@@ -144,7 +141,7 @@
                     android:id="@+id/userComment2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User: \Delicious!\ "
+                    android:text="User: Delicious!"
                     android:textSize="14sp"/>
 
                 <RatingBar
@@ -176,7 +173,6 @@
                 android:id="@+id/recipeDetails3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:layout_toRightOf="@id/recipeImage3"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
@@ -193,7 +189,7 @@
                     android:id="@+id/userComment3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User: \Delicious!\ "
+                    android:text="User: Delicious!"
                     android:textSize="14sp"/>
 
                 <RatingBar
@@ -206,7 +202,6 @@
                     android:isIndicator="true"/>
             </LinearLayout>
         </RelativeLayout>
-
 
     </LinearLayout>
 </RelativeLayout>
