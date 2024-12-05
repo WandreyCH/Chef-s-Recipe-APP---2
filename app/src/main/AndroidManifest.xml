@@ -38,11 +38,11 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashViewActivity"
+            android:name=".TestApiActivity"
             android:exported="false"/>
-            <activity
-                android:name=".TestApiActivity"
-                android:exported="true" >
+        <activity
+            android:name=".SplashViewActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -203,5 +203,16 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/ButtonApiTests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test API"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_edittext"
+            android:textColor="@android:color/white"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp"/>
+
     </LinearLayout>
 </RelativeLayout>

@@ -2,6 +2,10 @@ package com.example.chefsrecipe;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.RatingBar;
@@ -28,12 +32,12 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
-    private RecyclerView recipeRecyclerView;
-
+//    private RecyclerView recipeRecyclerView;
 
     EditText searchBar;
     TextView topRatedTitle;
     RatingBar ratingBar1;
+    Button apiTestButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         searchBar = findViewById(R.id.searchBar);
         topRatedTitle = findViewById(R.id.topRatedTitle);
         ratingBar1 = findViewById(R.id.ratingBar1);
+        apiTestButton = findViewById(R.id.ButtonApiTests);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -51,8 +56,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
-        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
+//        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        apiTestButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeScreenActivity.this, TestApiActivity.class);
+            startActivity(intent);
+        });
 
         // Simulando dados (serão substituídos por dados reais do backend futuramente)
         List<Recipe> topRatedRecipes = new ArrayList<>();
@@ -61,9 +71,6 @@ public class HomeScreenActivity extends AppCompatActivity {
         topRatedRecipes.add(new Recipe("", "Chocolate Cake", "aaaaa","bbbbb","ccccc"));
         topRatedRecipes.add(new Recipe("", "Grilled Salmon", "aaaaa","bbbbb","ccccc"));
 
-//        // Configura o Adapter
-//        adapter = new RecipeAdapter(topRatedRecipes);
-//        recipeRecyclerView.setAdapter(adapter);
     } @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -79,31 +86,38 @@ public class HomeScreenActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Navega para o perfil de Chef ou Home Cook, dependendo do usuário.
     private void navigateToProfile() {
         if (currentUser != null) {
-            String role = getRole(currentUser.getUid()); // A lógica para pegar o role do usuário
-
-            if ("Chef".equals(role)) {
-                Intent intent = new Intent(HomeScreenActivity.this, ChefProfileActivity.class);
-                startActivity(intent);
-            } else {
-                // Navegar para a página de perfil de Home Cook (crie a classe HomeCookProfileActivity se necessário)
-                Intent intent = new Intent(HomeScreenActivity.this, HomeCookProfile.class);
-                startActivity(intent);
-            }
+            getRole(currentUser.getUid(), role -> {  // Passa o callback como argumento
+                if ("Chef".equals(role)) {
+                    Intent intent = new Intent(HomeScreenActivity.this, ChefProfileActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(HomeScreenActivity.this, HomeCookProfile.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
-    private String getRole(String userId) {
-        // Obter o role do usuário a partir do Firebase
+    private void getRole(String userId, RoleCallback callback) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         reference.child("role").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 String role = task.getResult().getValue(String.class);
-                // Aqui você pode manipular o resultado e decidir o próximo passo.
+                if (role != null) {
+                    callback.onRoleReceived(role);  // Chama o callback com o valor do role
+                } else {
+                    callback.onRoleReceived("Home Cook");  // Valor padrão se nulo
+                }
+            } else {
+                callback.onRoleReceived("Home Cook");  // Valor padrão em caso de erro
             }
         });
-
-        return "Chef"; // Retorne o role depois de buscar do Firebase.
+    }
+    // Função que define o método onRoleReceived após "role" ser atualizado no firebase
+    public interface RoleCallback {
+        void onRoleReceived(String role);
     }
 }

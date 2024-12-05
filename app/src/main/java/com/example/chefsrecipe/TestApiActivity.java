@@ -23,8 +23,9 @@ public class TestApiActivity extends AppCompatActivity {
     private TextView resultText1, resultText2, resultText3;
     private Button buttonQuery1, buttonQuery2, buttonQuery3;
 
+    //OkHttpClient is used to do HTTP calls, in this case, to call the API
     private final OkHttpClient client = new OkHttpClient();
-    private final String apiKey = "nghgU/xbrOsjWJHm8R/amA==78Hk0ZQil4itXi9X"; // Substitua pela sua chave
+    private final String apiKey = "nghgU/xbrOsjWJHm8R/amA==78Hk0ZQil4itXi9X";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,31 +55,41 @@ public class TestApiActivity extends AppCompatActivity {
             return;
         }
 
+        // Define the API endpoint URL, including the query parameter
         String url = "https://api.calorieninjas.com/v1/nutrition?query=" + query;
 
+        // Cria uma requisição HTTP usando OkHttp
         Request request = new Request.Builder()
-                .url(url)
-                .addHeader("X-Api-Key", apiKey)
-                .build();
+                .url(url) // Set the URL for the request
+                .addHeader("X-Api-Key", apiKey) // Add the API key in the request header
+                .build(); // Build the request object
 
+        // Make an asynchronous network call using the OkHttp client
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                // Handle the failure case and update the UI with an error message
                 runOnUiThread(() -> resultTextView.setText("Request failed: " + e.getMessage()));
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful()) { // Check if the HTTP response is successful (status code 200)
+                    // Pega o corpo da resposta como String
                     String responseData = response.body().string();
+
+                    // Cria um objeto GSON para passar uma resposta JSON
                     Gson gson = new Gson();
 
-                    // Converte o JSON em um array de NutritionItem
+                    // Converte a resposta JSON  em um objeto JsonObject
                     JsonObject jsonResponse = gson.fromJson(responseData, JsonObject.class);
+
+                    // Extract the "items" array from the JSON response
                     JsonArray items = jsonResponse.getAsJsonArray("items");
 
                     // Constrói uma string formatada para exibição
                     StringBuilder formattedResponse = new StringBuilder();
+                    //this for loop is here in case I want to look for more than one item
                     for (int i = 0; i < items.size(); i++) {
                         NutritionItem item = gson.fromJson(items.get(i), NutritionItem.class);
                         formattedResponse.append("Item name: ").append(item.getName()).append("\n")
@@ -88,6 +99,7 @@ public class TestApiActivity extends AppCompatActivity {
                                 .append("Total Carbs (g): ").append(item.getCarbohydrates_total_g()).append("\n\n");
                     }
 
+                    //Fetch data from API then update textView with the results
                     runOnUiThread(() -> resultTextView.setText(formattedResponse.toString()));
                 } else {
                     runOnUiThread(() -> resultTextView.setText("Request failed: " + response.message()));
