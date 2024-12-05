@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 public class NutritionAPI {
 
-    private static final String API_KEY = "YOUR_API_KEY"; // Substitua pela sua chave API
+    private static final String API_KEY = "nghgU/xbrOsjWJHm8R/amA==78Hk0ZQil4itXi9X"; // Substitua pela sua chave API
 
     public static void getNutritionInfo(String query) {
         // URL da API
@@ -47,10 +47,10 @@ public class NutritionAPI {
                         double carbohydrates = item.getDouble("carbohydrates_total_g");
 
                         // Exemplo de exibição de dados no Log
-                        System.out.println("Item: " + name);
-                        System.out.println("Calories: " + calories);
-                        System.out.println("Protein: " + protein + "g");
-                        System.out.println("Fat: " + fat + "g");
+                        System.out.println("Item name: " + name + ", ");
+                        System.out.println("Item Calories: " + calories + ", ");
+                        System.out.println("Protein: " + protein + "g" + ", ");
+                        System.out.println("Fat: " + fat + "g" + ", ");
                         System.out.println("Carbohydrates: " + carbohydrates + "g");
                     }
                 } else {
