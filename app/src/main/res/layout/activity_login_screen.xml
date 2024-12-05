@@ -18,6 +18,15 @@
         android:src="@drawable/chef"
         android:layout_marginBottom="40dp"/> <!-- Adicionando um espaço abaixo da logo -->
 
+    <!-- Texto para criar uma conta -->
+    <TextView
+        android:id="@+id/createAccountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Click here"
+        android:textColor="@color/blue"
+        android:textSize="18sp"/>
+
     <!-- Campo de email -->
     <EditText
         android:id="@+id/editTextEmail"
@@ -39,7 +48,16 @@
         android:padding="16dp"
         android:textColor="#000000"
         android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot your password? Click here"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp"/>
 
     <!-- Botão de login -->
     <Button
@@ -51,16 +69,6 @@
         android:background="@drawable/rounded_edittext"
         android:textColor="@android:color/white"
         android:padding="16dp"
-        android:layout_marginBottom="24dp"/>
-
-    <!-- Texto para criar uma conta -->
-    <TextView
-        android:id="@+id/createAccountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account? Click here"
-        android:textColor="@color/blue"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"/>
+        android:layout_marginBottom="18dp"/>
 
 </LinearLayout>

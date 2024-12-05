@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,7 +18,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button buttonLogin;
-    private TextView signUpText;
+    private TextView signUpText, forgotPasswordText;
 
     private FirebaseAuth mAuth;  // Firebase Authentication
 
@@ -33,6 +35,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.editTextPassword);
         signUpText = findViewById(R.id.createAccountText);
         buttonLogin = findViewById(R.id.loginButton);
+        forgotPasswordText = findViewById(R.id.forgotPasswordText);
 
         // Navigate to SignUpActivity when "Create Account" is clicked
         signUpText.setOnClickListener(v -> {
@@ -42,6 +45,8 @@ public class LoginScreenActivity extends AppCompatActivity {
 
         // Handle login button click
         buttonLogin.setOnClickListener(v -> loginUser());
+
+        forgotPasswordText.setOnClickListener(v -> showPasswordResetDialog());
     }
 
     private void loginUser() {
@@ -71,5 +76,46 @@ public class LoginScreenActivity extends AppCompatActivity {
                 Toast.makeText(LoginScreenActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    //This was created to show a dialog box when you click on "Forgot Password"
+    private void showPasswordResetDialog() {
+        // Create an AlertDialog to prompt for the email
+        EditText emailInput = new EditText(this);
+        emailInput.setHint("Enter your email");
+
+        AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(this);
+        passwordResetDialog.setTitle("Reset Password");
+        passwordResetDialog.setMessage("Enter your email to receive the reset link:");
+        passwordResetDialog.setView(emailInput);
+
+        // Set actions for the dialog buttons
+        passwordResetDialog.setPositiveButton("Send", (dialog, which) -> {
+            String email = emailInput.getText().toString().trim();
+            if (!email.isEmpty()) {
+                sendPasswordResetEmail(email);
+            } else {
+                Toast.makeText(LoginScreenActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        passwordResetDialog.setNegativeButton("Cancel", (dialog, which) -> {
+            dialog.dismiss();  // Close the dialog without doing anything
+        });
+
+        passwordResetDialog.create().show();  // Display the dialog
+    }
+
+    //Envia o link de reset para o email. Está funcional.
+    private void sendPasswordResetEmail(String email) {
+        // Use Firebase Auth to send the reset link
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginScreenActivity.this, "Reset link sent to your email.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginScreenActivity.this, "Failed to send reset email: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
