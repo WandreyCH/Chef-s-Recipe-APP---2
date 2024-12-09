@@ -44,7 +44,7 @@ public class ChefProfileActivity extends AppCompatActivity {
         chefNameText = findViewById(R.id.chefNameText);
 
         // Carregar o nome do chef ao iniciar a atividade
-        loadChefProfile();
+        loadProfile();
 
         profileUpdate.setOnClickListener(v -> update());
 
@@ -59,7 +59,7 @@ public class ChefProfileActivity extends AppCompatActivity {
     }
 
 
-    private void loadChefProfile() {
+    private void loadProfile() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -73,6 +73,10 @@ public class ChefProfileActivity extends AppCompatActivity {
                         if (chef.getChefDescription() != null) {
                             savedDescriptionText.setText(chef.getChefDescription()); // Define a descrição salva
                             savedDescriptionText.setVisibility(View.VISIBLE); // Torna a descrição visível
+
+                            //Caso ja haja uma descrição, o botão e o editText não aparecem.
+                            chefDescription.setVisibility(View.GONE);
+                            saveProfileButton.setVisibility(View.GONE);
                         }
                     } else {
                         Toast.makeText(ChefProfileActivity.this, "User not found", Toast.LENGTH_SHORT).show();
@@ -103,6 +107,11 @@ public class ChefProfileActivity extends AppCompatActivity {
                             // Atualiza o TextView instantaneamente com a descrição salva
                             savedDescriptionText.setText(description);
                             savedDescriptionText.setVisibility(View.VISIBLE);
+
+                            //Remove a visibilidade do EditText e do botão após clicado.
+                            chefDescription.setVisibility(View.GONE);
+                            saveProfileButton.setVisibility(View.GONE);
+
                             Toast.makeText(ChefProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(ChefProfileActivity.this, "Failed to Update Profile", Toast.LENGTH_SHORT).show();
