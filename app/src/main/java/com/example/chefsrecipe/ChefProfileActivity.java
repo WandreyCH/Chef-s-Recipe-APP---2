@@ -67,9 +67,13 @@ public class ChefProfileActivity extends AppCompatActivity {
             // Recuperar os dados do usuário do Firebase
             databaseReference.child(userId).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    User user = task.getResult().getValue(User.class);
-                    if (user != null) {
-                        chefNameText.setText(user.getName());  // Define o nome do chef no TextView
+                    Chef chef = task.getResult().getValue(Chef.class);
+                    if (chef != null) {
+                        chefNameText.setText(chef.getName()); // Define o nome do chef no TextView
+                        if (chef.getChefDescription() != null) {
+                            savedDescriptionText.setText(chef.getChefDescription()); // Define a descrição salva
+                            savedDescriptionText.setVisibility(View.VISIBLE); // Torna a descrição visível
+                        }
                     } else {
                         Toast.makeText(ChefProfileActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                     }
@@ -92,15 +96,13 @@ public class ChefProfileActivity extends AppCompatActivity {
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            // Salvar a descrição do chef no banco de dados
-            Chef chefProfile = new Chef();
-            chefProfile.setChefDescription(description);  // Adiciona a descrição
-
-            databaseReference.child(userId).child("chefProfile").setValue(chefProfile)
+            // Atualizar apenas a descrição no banco de dados
+            databaseReference.child(userId).child("chefDescription").setValue(description)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            savedDescriptionText.setText(description); // Atualiza o TextView da descrição
-                            savedDescriptionText.setVisibility(View.VISIBLE); // Exibe a descrição salva
+                            // Atualiza o TextView instantaneamente com a descrição salva
+                            savedDescriptionText.setText(description);
+                            savedDescriptionText.setVisibility(View.VISIBLE);
                             Toast.makeText(ChefProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(ChefProfileActivity.this, "Failed to Update Profile", Toast.LENGTH_SHORT).show();

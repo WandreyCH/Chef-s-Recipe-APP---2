@@ -73,7 +73,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 }
             } else {
                 // Login failed, display a message
-                Toast.makeText(LoginScreenActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginScreenActivity.this, "Authentication failed: Login or Password are invalid", Toast.LENGTH_SHORT).show();
             }
         });
     }
