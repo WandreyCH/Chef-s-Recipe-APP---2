@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -41,13 +42,14 @@
         android:textSize="18sp"
         android:textStyle="bold"/>
 
+    <!-- RecyclerView para exibir a lista de receitas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:layout_below="@id/topRatedTitle"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="24dp"/>
 
     <!-- Lista de receitas -->
     <LinearLayout
@@ -85,29 +87,27 @@
                     android:id="@+id/recipeName1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dish Name"
+                    android:text="Recipe Name"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/userComment1"
+                    android:id="@+id/recipeDescription1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User: Delicious!"
+                    android:text="Description"
                     android:textSize="14sp"/>
 
-                <RatingBar
-                    android:id="@+id/ratingBar1"
+                <TextView
+                    android:id="@+id/chefName1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:rating="4.5"
-                    android:stepSize="0.5"
-                    android:isIndicator="true"/>
+                    android:text="Chef: Chef's Name"
+                    android:textSize="14sp"/>
             </LinearLayout>
         </RelativeLayout>
 
-        <!-- RECEITA 2 -->
+        <!-- RECEITA 2 (repetir estrutura semelhante à receita 1) -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,29 +133,27 @@
                     android:id="@+id/recipeName2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dish Name"
+                    android:text="Recipe Name"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/userComment2"
+                    android:id="@+id/recipeDescription2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User: Delicious!"
+                    android:text="Description"
                     android:textSize="14sp"/>
 
-                <RatingBar
-                    android:id="@+id/ratingBar2"
+
+                <TextView
+                    android:id="@+id/chefName2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:rating="4.5"
-                    android:stepSize="0.5"
-                    android:isIndicator="true"/>
+                    android:text="Chef: Chef's Name"
+                    android:textSize="14sp"/>
             </LinearLayout>
         </RelativeLayout>
 
-        <!-- RECEITA 3 -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -181,28 +179,28 @@
                     android:id="@+id/recipeName3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dish Name"
+                    android:text="Recipe Name"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/userComment3"
+                    android:id="@+id/recipeDescription3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User: Delicious!"
+                    android:text="Description"
                     android:textSize="14sp"/>
 
-                <RatingBar
-                    android:id="@+id/ratingBar3"
+
+                <TextView
+                    android:id="@+id/chefName3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:rating="4.5"
-                    android:stepSize="0.5"
-                    android:isIndicator="true"/>
+                    android:text="Chef: Chef's Name"
+                    android:textSize="14sp"/>
             </LinearLayout>
         </RelativeLayout>
 
+        <!-- Botão de Teste de API -->
         <Button
             android:id="@+id/ButtonApiTests"
             android:layout_width="match_parent"

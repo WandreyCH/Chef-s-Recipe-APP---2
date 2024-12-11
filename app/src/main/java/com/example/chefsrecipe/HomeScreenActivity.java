@@ -22,22 +22,30 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
-//    private RecyclerView recipeRecyclerView;
+    private DatabaseReference databaseReference;
+    private RecipeAdapter recipeAdapter;
+    private List<Recipe> recipeList;
 
     EditText searchBar;
     TextView topRatedTitle;
-    RatingBar ratingBar1;
+//    RatingBar ratingBar1;
     Button apiTestButton;
+    RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +55,14 @@ public class HomeScreenActivity extends AppCompatActivity {
         // Inicialize componentes (pode ser útil para lógica futura)
         searchBar = findViewById(R.id.searchBar);
         topRatedTitle = findViewById(R.id.topRatedTitle);
-        ratingBar1 = findViewById(R.id.ratingBar1);
+//        ratingBar1 = findViewById(R.id.ratingBar1);
         apiTestButton = findViewById(R.id.ButtonApiTests);
+
+        recyclerView = findViewById(R.id.recipeRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recipeList = new ArrayList<>();
+        recipeAdapter = new RecipeAdapter(recipeList);
+        recyclerView.setAdapter(recipeAdapter);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -56,22 +70,19 @@ public class HomeScreenActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        recipeRecyclerView = findViewById(R.id.recipeRecyclerView);
-//        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         apiTestButton.setOnClickListener(v -> {
             Intent intent = new Intent(HomeScreenActivity.this, TestApiActivity.class);
             startActivity(intent);
         });
 
-        // Simulando dados (serão substituídos por dados reais do backend futuramente)
-        List<Recipe> topRatedRecipes = new ArrayList<>();
-        topRatedRecipes.add(new Recipe("", "Pasta Carbonara", "aaaaa","bbbbb","ccccc"));
-        topRatedRecipes.add(new Recipe("", "Sushi Deluxe", "aaaaa","bbbbb","ccccc"));
-        topRatedRecipes.add(new Recipe("", "Chocolate Cake", "aaaaa","bbbbb","ccccc"));
-        topRatedRecipes.add(new Recipe("", "Grilled Salmon", "aaaaa","bbbbb","ccccc"));
+        // Inicializa o Firebase Database
+        databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
 
-    } @Override
+        // Buscar receitas aleatórias do firebase
+        fetchRecipesFromFirebase();
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
@@ -100,7 +111,6 @@ public class HomeScreenActivity extends AppCompatActivity {
             });
         }
     }
-
     private void getRole(String userId, RoleCallback callback) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         reference.child("role").get().addOnCompleteListener(task -> {
@@ -120,4 +130,68 @@ public class HomeScreenActivity extends AppCompatActivity {
     public interface RoleCallback {
         void onRoleReceived(String role);
     }
-}
+
+//------------------------------
+
+        private void fetchRecipesFromFirebase() {
+            // Buscar todas as receitas
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // Criar uma lista para armazenar as receitas
+                    List<Recipe> recipeList = new ArrayList<>();
+
+                    // Iterar sobre os dados para adicionar as receitas na lista
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe recipe = snapshot.getValue(Recipe.class);
+                        recipeList.add(recipe);
+                    }
+
+                    // Selecionar aleatoriamente 3 receitas
+                    List<Recipe> randomRecipes = getRandomRecipes(recipeList, 3);
+
+                    // Atualizar a UI com as 3 receitas aleatórias
+                    updateUI(randomRecipes);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Tratar erro de leitura
+                    Log.e("FirebaseError", "Erro ao acessar o Firebase: " + databaseError.getMessage());
+                }
+            });
+        }
+
+        // Função para selecionar aleatoriamente 3 receitas
+        public List<Recipe> getRandomRecipes(List<Recipe> recipeList, int count) {
+            Collections.shuffle(recipeList); // Embaralha a lista
+            return recipeList.subList(0, Math.min(count, recipeList.size())); // Retorna as primeiras 3 receitas (ou menos se não houver 3 receitas)
+        }
+
+        // Função para atualizar a UI com as receitas
+        public void updateUI(List<Recipe> randomRecipes) {
+            // Aqui você pode atualizar a interface com os dados das 3 receitas aleatórias
+            // Por exemplo, se você tem 3 TextViews ou outros componentes de UI para exibir as receitas:
+
+            if (randomRecipes.size() > 0) {
+                Recipe recipe1 = randomRecipes.get(0);
+                // Atualiza a UI para exibir recipe1
+                TextView recipeName1 = findViewById(R.id.recipeName1);
+                recipeName1.setText(recipe1.getName());
+            }
+
+            if (randomRecipes.size() > 1) {
+                Recipe recipe2 = randomRecipes.get(1);
+                // Atualiza a UI para exibir recipe2
+                TextView recipeName2 = findViewById(R.id.recipeName2);
+                recipeName2.setText(recipe2.getName());
+            }
+
+            if (randomRecipes.size() > 2) {
+                Recipe recipe3 = randomRecipes.get(2);
+                // Atualiza a UI para exibir recipe3
+                TextView recipeName3 = findViewById(R.id.recipeName3);
+                recipeName3.setText(recipe3.getName());
+            }
+        }
+    }
