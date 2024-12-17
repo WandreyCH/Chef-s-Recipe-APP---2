@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/red"> <!-- Definindo cor de fundo -->
+
+    <!-- ImageView for Chef's Profile Image -->
+    <ImageView
+        android:id="@+id/hcImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@drawable/homecook"
+        android:contentDescription="Chef's Profile Image"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Mostra o nome do chef vindo do objeto User -->
+    <TextView
+        android:id="@+id/hcNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_edittext" />
+
+    <!-- EditText for Chef's Description -->
+    <EditText
+        android:id="@+id/hcAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input your Age:"
+        android:gravity="top"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/edit_text" /> <!-- Fundo de input de texto padrão -->
+
+    <!-- Button to Save Profile -->
+    <Button
+        android:id="@+id/saveProfileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Profile"
+        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo branco -->
+
+    <!-- Button to Logout -->
+    <Button
+        android:id="@+id/updateProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo similar aos outros -->
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edittext" /> <!-- Botão com fundo similar aos outros -->
+</LinearLayout>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:padding="16dp">
+
+    <!-- Toolbar com ícone para ir ao perfil do usuário -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="5dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        app:menu="@menu/toolbar_menu" />
+
+    <!-- Barra de pesquisa -->
+    <EditText
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@android:drawable/edit_text"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:hint="Search recipes"
+        android:padding="15dp" />
+
+    <TextView
+        android:id="@+id/topRatedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchBar"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:text="Top Rated Recipes"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <!-- RecyclerView para exibir a lista de receitas -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topRatedTitle"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Lista de receitas -->
+    <LinearLayout
+        android:id="@+id/recipeList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topRatedTitle"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <!-- RECEITA 1 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/recipeImage1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/chef"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:id="@+id/recipeDetails1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/recipeImage1"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/recipeName1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recipe Name"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/recipeDescription1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/chefName1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chef: Chef's Name"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- RECEITA 2 (repetir estrutura semelhante à receita 1) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/recipeImage2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/chef"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:id="@+id/recipeDetails2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/recipeImage2"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/recipeName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recipe Name"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/recipeDescription2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textSize="14sp"/>
+
+
+                <TextView
+                    android:id="@+id/chefName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chef: Chef's Name"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/recipeImage3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/chef"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:id="@+id/recipeDetails3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/recipeImage3"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/recipeName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recipe Name"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/recipeDescription3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textSize="14sp"/>
+
+
+                <TextView
+                    android:id="@+id/chefName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chef: Chef's Name"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- Botão de Teste de API -->
+        <Button
+            android:id="@+id/ButtonApiTests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test API"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_edittext"
+            android:textColor="@android:color/white"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+</RelativeLayout>

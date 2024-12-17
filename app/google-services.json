@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "740755362204",
+    "firebase_url": "https://chef-s-recipe-app-e0cae-default-rtdb.firebaseio.com",
+    "project_id": "chef-s-recipe-app-e0cae",
+    "storage_bucket": "chef-s-recipe-app-e0cae.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740755362204:android:272d488c1989e2acdd3859",
+        "android_client_info": {
+          "package_name": "com.example.chefsrecipe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUHqdwM68ak7yLlvnVKPqpCw43O_SerAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740755362204:android:6745c8f69b4c6833dd3859",
+        "android_client_info": {
+          "package_name": "com.example.chefsrecipeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUHqdwM68ak7yLlvnVKPqpCw43O_SerAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

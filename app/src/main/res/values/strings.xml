@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ChefsRecipe</string>
+    <string-array name="role_array">
+        <item>Chef</item>
+        <item>Home Cook</item>
+    </string-array>
+</resources>
