@@ -52,21 +52,36 @@
         android:minHeight="100dp"
         android:layout_gravity="center_horizontal"/>
 
-    <!-- EditText for Ingredients -->
+    <!-- EditText for Adding Single Ingredient -->
     <EditText
-        android:id="@+id/recipeIngredients"
+        android:id="@+id/ingredientInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingredients"
-        android:inputType="textMultiLine"
-        android:gravity="top"
-        android:textColor="#333333"
+        android:hint="Add an Ingredient"
+        android:inputType="text"
         android:textSize="16sp"
         android:background="@drawable/rounded_edittext"
         android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:minHeight="100dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Button to Add Ingredient -->
+    <Button
+        android:id="@+id/addIngredientButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Ingredient"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#D32F2F"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- ListView to Display Added Ingredients -->
+    <ListView
+        android:id="@+id/ingredientsListView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:dividerHeight="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="8dp"/>
 
     <!-- EditText for Recipe Preparation -->
     <EditText
