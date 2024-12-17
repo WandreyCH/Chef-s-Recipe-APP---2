@@ -16,8 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class UpdateScreenActivity extends AppCompatActivity {
 
-    EditText editTextName, editTextPassword, confirmPassword;
-    Spinner spinnerRole;
+    EditText editTextName, editTextPassword, confirmPassword, chefDescription;
     Button buttonUpdate;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
@@ -34,7 +33,7 @@ public class UpdateScreenActivity extends AppCompatActivity {
         editTextName = findViewById(R.id.editTextName);
         editTextPassword = findViewById(R.id.editTextPassword);
         confirmPassword = findViewById(R.id.cPassword);
-        spinnerRole = findViewById(R.id.roleSpinner);
+        chefDescription = findViewById(R.id.chefDescription);
         buttonUpdate = findViewById(R.id.submitButton);
 
         buttonUpdate.setOnClickListener(v -> updateProfile());
@@ -44,7 +43,7 @@ public class UpdateScreenActivity extends AppCompatActivity {
         String name = editTextName.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String confirmPass = confirmPassword.getText().toString().trim();
-        String role = spinnerRole.getSelectedItem().toString();
+        String description = chefDescription.getText().toString().trim();
 
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
@@ -52,7 +51,7 @@ public class UpdateScreenActivity extends AppCompatActivity {
             String userId = firebaseUser.getUid();
 
             // Validando os campos
-            if (TextUtils.isEmpty(name) && TextUtils.isEmpty(password) && TextUtils.isEmpty(confirmPass)) {
+            if (TextUtils.isEmpty(name) && TextUtils.isEmpty(password) && TextUtils.isEmpty(confirmPass) && TextUtils.isEmpty(description)) {
                 Toast.makeText(UpdateScreenActivity.this, "No updates made", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -78,9 +77,9 @@ public class UpdateScreenActivity extends AppCompatActivity {
                 return;
             }
 
-            // Caso o papel tenha sido alterado, atualiza o Firebase
-            if (!role.equals(firebaseUser.getDisplayName())) {
-                databaseReference.child(userId).child("role").setValue(role);
+            // Atualiza a descrição ou mantém, caso nao haja mudança.
+            if (!TextUtils.isEmpty(description)) {
+                databaseReference.child(userId).child("chefDescription").setValue(description);
             }
 
             // Mensagem de sucesso
