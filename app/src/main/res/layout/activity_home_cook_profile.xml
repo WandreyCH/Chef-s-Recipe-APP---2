@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/red"> <!-- Definindo cor de fundo -->
+    android:background="#FFF1F1"> <!-- Definindo cor de fundo -->
 
     <!-- ImageView for Chef's Profile Image -->
     <ImageView

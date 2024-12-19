@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/red"> <!-- Alterando o fundo para vermelho, conforme sua paleta -->
+    android:background="#FFF1F1"> <!-- Alterando o fundo para vermelho, conforme sua paleta -->
 
     <LinearLayout
         android:layout_width="match_parent"
