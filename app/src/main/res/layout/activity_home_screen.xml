@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red"
+    android:background="#FFF1F1"
     android:padding="16dp">
 
     <!-- Toolbar com ícone para ir ao perfil do usuário -->
