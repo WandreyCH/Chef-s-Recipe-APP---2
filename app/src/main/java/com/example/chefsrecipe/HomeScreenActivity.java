@@ -41,8 +41,10 @@ public class HomeScreenActivity extends AppCompatActivity {
     private List<Recipe> recipeList;
 
     EditText searchBar;
-    TextView topRatedTitle;
-//    RatingBar ratingBar1;
+    TextView topRatedTitle, recipeName1, recipeName2, recipeName3,
+            recipeDescription1, recipeDescription2, recipeDescription3,
+            chefName1, chefName2, chefName3;
+    RatingBar ratingBar1;
     Button apiTestButton;
     RecyclerView recyclerView;
 
@@ -55,6 +57,15 @@ public class HomeScreenActivity extends AppCompatActivity {
         // Inicialize componentes (pode ser útil para lógica futura)
         searchBar = findViewById(R.id.searchBar);
         topRatedTitle = findViewById(R.id.topRatedTitle);
+        recipeName1 = findViewById(R.id.recipeName1);
+        recipeName2 = findViewById(R.id.recipeName2);
+        recipeName3 = findViewById(R.id.recipeName3);
+        recipeDescription1 = findViewById(R.id.recipeDescription1);
+        recipeDescription2 = findViewById(R.id.recipeDescription2);
+        recipeDescription3 = findViewById(R.id.recipeDescription3);
+        chefName1 = findViewById(R.id.chefName1);
+        chefName2 = findViewById(R.id.chefName2);
+        chefName3 = findViewById(R.id.chefName3);
 //        ratingBar1 = findViewById(R.id.ratingBar1);
         apiTestButton = findViewById(R.id.ButtonApiTests);
 
@@ -77,7 +88,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         });
 
         // Inicializa o Firebase Database
-        databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Recipes");
 
         // Buscar receitas aleatórias do firebase
         fetchRecipesFromFirebase();

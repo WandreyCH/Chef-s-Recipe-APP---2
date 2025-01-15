@@ -5,7 +5,8 @@
         <item>Home Cook</item>
     </string-array>
     <color name="black">#FF000000</color>
-    <color name="red">#881717</color>
+    <color name="blue">#314492</color>
+    <color name="red">#FF4B4B</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">ChefsRecipe</string>
     <string name="firebase_database_url" translatable="false">https://chef-s-recipe-app-e0cae-default-rtdb.firebaseio.com</string>

@@ -32,6 +32,18 @@
         android:testOnly="true"
         android:theme="@style/Theme.ChefsRecipe" >
         <activity
+            android:name="com.example.chefsrecipe.UpdateScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.chefsrecipe.CreateRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.chefsrecipe.HomeCookProfile"
+            android:exported="false" />
+        <activity
+            android:name="com.example.chefsrecipe.ChefProfileActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.chefsrecipe.HomeScreenActivity"
             android:exported="false" />
         <activity
@@ -42,6 +54,9 @@
             android:exported="false" />
         <activity
             android:name="com.example.chefsrecipe.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.chefsrecipe.TestApiActivity"
             android:exported="false" />
         <activity
             android:name="com.example.chefsrecipe.SplashViewActivity"
