@@ -36,7 +36,6 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
-    private DatabaseReference databaseReference;
     private RecipeAdapter recipeAdapter;
     private List<Recipe> recipeList;
 
@@ -47,6 +46,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     RatingBar ratingBar1;
     Button apiTestButton;
     RecyclerView recyclerView;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -79,9 +79,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Inicializa o Firebase Database
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipes");
-
+        databaseReference = FirebaseDatabase.getInstance().getReference("Recipes");
 
         // Buscar receitas aleatórias do firebase
         fetchRecipesFromFirebase();
@@ -116,8 +114,10 @@ public class HomeScreenActivity extends AppCompatActivity {
         }
     }
     private void getRole(String userId, RoleCallback callback) {
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
         reference.child("role").get().addOnCompleteListener(task -> {
+
             if (task.isSuccessful()) {
                 String role = task.getResult().getValue(String.class);
                 if (role != null) {
@@ -138,17 +138,22 @@ public class HomeScreenActivity extends AppCompatActivity {
 //------------------------------
 
         private void fetchRecipesFromFirebase() {
+
             // Buscar todas as receitas
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+
+            public void onDataChange(DataSnapshot dataSnapshot) {
                     List<Recipe> fetchedRecipes = new ArrayList<>();
+
+                    Log.d("HomeScreenActivity", "Iniciando fetch das receitas do Firebase...");
 
                     // Iterar sobre os dados para adicionar as receitas na lista
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String name = snapshot.child("name").getValue(String.class);
                         String description = snapshot.child("description").getValue(String.class);
                         String chefName = snapshot.child("chefName").getValue(String.class);
+
+                        Log.d("HomeScreenActivity", "Receita encontrada: " + name);
 
                         Recipe recipe = new Recipe(name, description, snapshot.child("ingredients").getValue(String.class),
                                 snapshot.child("preparation").getValue(String.class),  chefName);
