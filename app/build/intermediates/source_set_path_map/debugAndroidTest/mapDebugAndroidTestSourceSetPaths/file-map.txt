@@ -1,4 +1,4 @@
-com.example.chefsrecipe.test.app-core-1.6.1-0 C:\Users\wandr\.gradle\caches\transforms-4\472caf5cc4f7ac598a2d862ae8b0dac7\transformed\core-1.6.1\res
+com.example.chefsrecipe.test.app-core-1.6.1-0 C:\Users\wandr\.gradle\caches\transforms-4\a88bec9b92cbb11705357b24ba4a2f5d\transformed\core-1.6.1\res
 com.example.chefsrecipe.test.app-androidTest-1 C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\generated\res\resValues\androidTest\debug
 com.example.chefsrecipe.test.app-mergeDebugAndroidTestResources-2 C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
 com.example.chefsrecipe.test.app-mergeDebugAndroidTestResources-3 C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
