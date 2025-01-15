@@ -1,5 +1,6 @@
 package com.example.chefsrecipe;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
             Recipe recipe = recipeList.get(position);
-            holder.name.setText(recipe.getName());
-            holder.description.setText(recipe.getDescription());
             holder.chefName.setText("Chef: " + recipe.getChefName());
+            holder.description.setText("Description: " + recipe.getDescription());
+            holder.name.setText("Recipe Name: " + recipe.getName());
+
+
 
             // Carregar a imagem com Picasso ou Glide, por exemplo
 
@@ -51,7 +54,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             description = itemView.findViewById((R.id.recipeDescription));
             chefName = itemView.findViewById(R.id.chefName);
 
+            Log.d("RecipeViewHolder", "name: " + name);
+            Log.d("RecipeViewHolder", "description: " + description);
+            Log.d("RecipeViewHolder", "chefName: " + chefName);
+
 
         }
+
     }
+
 }

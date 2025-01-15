@@ -40,9 +40,9 @@ public class HomeScreenActivity extends AppCompatActivity {
     private List<Recipe> recipeList;
 
     EditText searchBar;
-    TextView topRatedTitle, recipeName1, recipeName2, recipeName3,
-            recipeDescription1, recipeDescription2, recipeDescription3,
-            chefName1, chefName2, chefName3;
+    TextView topRatedTitle, recipeName, recipeName2, recipeName3,
+            recipeDescription, recipeDescription2, recipeDescription3,
+            chefName, chefName2, chefName3;
     RatingBar ratingBar1;
     Button apiTestButton;
     RecyclerView recyclerView;
@@ -58,14 +58,19 @@ public class HomeScreenActivity extends AppCompatActivity {
         searchBar = findViewById(R.id.searchBar);
         topRatedTitle = findViewById(R.id.topRatedTitle);
 
+
+
 //        ratingBar1 = findViewById(R.id.ratingBar1);
         apiTestButton = findViewById(R.id.ButtonApiTests);
 
+
         recyclerView = findViewById(R.id.recipeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         recipeList = new ArrayList<>();
         recipeAdapter = new RecipeAdapter(recipeList);
         recyclerView.setAdapter(recipeAdapter);
+
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -143,26 +148,28 @@ public class HomeScreenActivity extends AppCompatActivity {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    List<Recipe> fetchedRecipes = new ArrayList<>();
 
                     Log.d("HomeScreenActivity", "Iniciando fetch das receitas do Firebase...");
-
-                    // Iterar sobre os dados para adicionar as receitas na lista
+                if (dataSnapshot.exists()) {
+                    // Itera sobre as receitas
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        // Acessa os dados diretamente do snapshot
                         String name = snapshot.child("name").getValue(String.class);
                         String description = snapshot.child("description").getValue(String.class);
                         String chefName = snapshot.child("chefName").getValue(String.class);
+                        // Adiciona as informações à lista ou faz qualquer outra coisa necessária
+                        if (name != null && description != null && chefName != null) {
+                            // Aqui você pode usar as informações diretamente
+                            Log.d("Receita encontrada", "Nome: " + name + ", Descrição: " + description + ", Chef: " + chefName);
 
-                        Log.d("HomeScreenActivity", "Receita encontrada: " + name);
-
-                        Recipe recipe = new Recipe(name, description, snapshot.child("ingredients").getValue(String.class),
-                                snapshot.child("preparation").getValue(String.class),  chefName);
-                        fetchedRecipes.add(recipe);
+                            // Exemplo: adicionar os dados à lista de receitas (se necessário)
+                            recipeList.add(new Recipe(name, description,snapshot.child("ingredients").getValue(String.class),
+                                    snapshot.child("preparation").getValue(String.class), chefName)); // Ou outro tipo de objeto se necessário
+                        }
                     }
-                    // Atualizar a lista de receitas no adapter
-                    recipeList.clear();
-                    recipeList.addAll(fetchedRecipes);
+                    // Atualiza o adaptador para refletir as mudanças
                     recipeAdapter.notifyDataSetChanged();
+                }
                 }
 
                 @Override
