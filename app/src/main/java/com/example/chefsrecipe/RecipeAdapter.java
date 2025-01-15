@@ -28,27 +28,30 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
-        Recipe recipe = recipeList.get(position);
-        holder.recipeName.setText(recipe.getName());
-        holder.name.setText("Chef: " + recipe.getChefName());
-        //holder.userComment.setText("User: " + recipe.getComment());
-        //holder.ratingBar.setRating(recipe.getRating());
-        // Carregar a imagem com Picasso ou Glide, por exemplo
+        if (position >= 0 && position < recipeList.size()) {
+            Recipe recipe = recipeList.get(position);
+            holder.recipeName.setText(recipe.getName());
+            holder.description.setText(recipe.getDescription());
+            holder.name.setText("Chef: " + recipe.getChefName());
+            //holder.userComment.setText("User: " + recipe.getComment());
+            //holder.ratingBar.setRating(recipe.getRating());
+            // Carregar a imagem com Picasso ou Glide, por exemplo
+        }
     }
-
     @Override
     public int getItemCount() {
         return recipeList.size(); // Retorna o número de receitas na lista
     }
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
-        TextView recipeName, userComment, name;
+        TextView recipeName, userComment, name, description;
         RatingBar ratingBar;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
             recipeName = itemView.findViewById(R.id.recipeName);
             name = itemView.findViewById(R.id.chefName);
+            description = itemView.findViewById((R.id.recipeDescription));
             //userComment = itemView.findViewById(R.id.userComment);
             //ratingBar = itemView.findViewById(R.id.ratingBar);
         }

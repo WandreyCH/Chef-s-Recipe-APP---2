@@ -57,15 +57,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         // Inicialize componentes (pode ser útil para lógica futura)
         searchBar = findViewById(R.id.searchBar);
         topRatedTitle = findViewById(R.id.topRatedTitle);
-        recipeName1 = findViewById(R.id.recipeName1);
-        recipeName2 = findViewById(R.id.recipeName2);
-        recipeName3 = findViewById(R.id.recipeName3);
-        recipeDescription1 = findViewById(R.id.recipeDescription1);
-        recipeDescription2 = findViewById(R.id.recipeDescription2);
-        recipeDescription3 = findViewById(R.id.recipeDescription3);
-        chefName1 = findViewById(R.id.chefName1);
-        chefName2 = findViewById(R.id.chefName2);
-        chefName3 = findViewById(R.id.chefName3);
+        recipeName = findViewById(R.id.recipeName);
+        recipeDescription = findViewById(R.id.recipeDescription);
+        chefName3= findViewById(R.id.chefName);
 //        ratingBar1 = findViewById(R.id.ratingBar1);
         apiTestButton = findViewById(R.id.ButtonApiTests);
 
@@ -88,7 +82,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         });
 
         // Inicializa o Firebase Database
-        databaseReference = FirebaseDatabase.getInstance().getReference("Recipes");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipes");
+
 
         // Buscar receitas aleatórias do firebase
         fetchRecipesFromFirebase();
@@ -149,60 +144,28 @@ public class HomeScreenActivity extends AppCompatActivity {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // Criar uma lista para armazenar as receitas
-                    List<Recipe> recipeList = new ArrayList<>();
+                    List<Recipe> fetchedRecipes = new ArrayList<>();
 
                     // Iterar sobre os dados para adicionar as receitas na lista
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Recipe recipe = snapshot.getValue(Recipe.class);
-                        recipeList.add(recipe);
+                        String name = snapshot.child("name").getValue(String.class);
+                        String description = snapshot.child("description").getValue(String.class);
+                        String chefName = snapshot.child("chefName").getValue(String.class);
+
+                        Recipe recipe = new Recipe(name, description, chefName);
+                        fetchedRecipes.add(recipe);
                     }
-
-                    // Selecionar aleatoriamente 3 receitas
-                    List<Recipe> randomRecipes = getRandomRecipes(recipeList, 3);
-
-                    // Atualizar a UI com as 3 receitas aleatórias
-                    updateUI(randomRecipes);
+                    // Atualizar a lista de receitas no adapter
+                    recipeList.clear();
+                    recipeList.addAll(fetchedRecipes);
+                    recipeAdapter.notifyDataSetChanged();
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     // Tratar erro de leitura
-                    Log.e("FirebaseError", "Erro ao acessar o Firebase: " + databaseError.getMessage());
+                    Log.e("FirebaseError", "Erro ao acessar o Firebase: " + databaseError.toException());
                 }
             });
         }
-
-        // Função para selecionar aleatoriamente 3 receitas
-        public List<Recipe> getRandomRecipes(List<Recipe> recipeList, int count) {
-            Collections.shuffle(recipeList); // Embaralha a lista
-            return recipeList.subList(0, Math.min(count, recipeList.size())); // Retorna as primeiras 3 receitas (ou menos se não houver 3 receitas)
-        }
-
-        // Função para atualizar a UI com as receitas
-        public void updateUI(List<Recipe> randomRecipes) {
-            // Aqui você pode atualizar a interface com os dados das 3 receitas aleatórias
-            // Por exemplo, se você tem 3 TextViews ou outros componentes de UI para exibir as receitas:
-
-            if (randomRecipes.size() > 0) {
-                Recipe recipe1 = randomRecipes.get(0);
-                // Atualiza a UI para exibir recipe1
-                TextView recipeName1 = findViewById(R.id.recipeName1);
-                recipeName1.setText(recipe1.getName());
-            }
-
-            if (randomRecipes.size() > 1) {
-                Recipe recipe2 = randomRecipes.get(1);
-                // Atualiza a UI para exibir recipe2
-                TextView recipeName2 = findViewById(R.id.recipeName2);
-                recipeName2.setText(recipe2.getName());
-            }
-
-            if (randomRecipes.size() > 2) {
-                Recipe recipe3 = randomRecipes.get(2);
-                // Atualiza a UI para exibir recipe3
-                TextView recipeName3 = findViewById(R.id.recipeName3);
-                recipeName3.setText(recipe3.getName());
-            }
-        }
-    }
+}
