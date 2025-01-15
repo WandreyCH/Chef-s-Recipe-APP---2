@@ -57,9 +57,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         // Inicialize componentes (pode ser útil para lógica futura)
         searchBar = findViewById(R.id.searchBar);
         topRatedTitle = findViewById(R.id.topRatedTitle);
-        recipeName = findViewById(R.id.recipeName);
-        recipeDescription = findViewById(R.id.recipeDescription);
-        chefName3= findViewById(R.id.chefName);
+
 //        ratingBar1 = findViewById(R.id.ratingBar1);
         apiTestButton = findViewById(R.id.ButtonApiTests);
 
@@ -152,7 +150,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                         String description = snapshot.child("description").getValue(String.class);
                         String chefName = snapshot.child("chefName").getValue(String.class);
 
-                        Recipe recipe = new Recipe(name, description, chefName);
+                        Recipe recipe = new Recipe(name, description, snapshot.child("ingredients").getValue(String.class),
+                                snapshot.child("preparation").getValue(String.class),  chefName);
                         fetchedRecipes.add(recipe);
                     }
                     // Atualizar a lista de receitas no adapter

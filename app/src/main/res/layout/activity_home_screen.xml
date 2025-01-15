@@ -46,159 +46,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipeRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_below="@id/topRatedTitle"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="24dp"/>
-
-    <!-- Lista de receitas -->
-    <LinearLayout
-        android:id="@+id/recipeList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/topRatedTitle"
-        android:background="@color/white"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <!-- RECEITA 1 -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/recipeImage1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/chef"
-                android:scaleType="centerCrop"/>
-
-            <LinearLayout
-                android:id="@+id/recipeDetails1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/recipeImage1"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/recipeName1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recipe Name"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/recipeDescription1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:id="@+id/chefName1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chef: Chef's Name"
-                    android:textSize="14sp"/>
-            </LinearLayout>
-        </RelativeLayout>
-
-        <!-- RECEITA 2 (repetir estrutura semelhante à receita 1) -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/recipeImage2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/chef"
-                android:scaleType="centerCrop"/>
-
-            <LinearLayout
-                android:id="@+id/recipeDetails2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/recipeImage2"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/recipeName2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recipe Name"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/recipeDescription2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:textSize="14sp"/>
-
-
-                <TextView
-                    android:id="@+id/chefName2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chef: Chef's Name"
-                    android:textSize="14sp"/>
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/recipeImage3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/chef"
-                android:scaleType="centerCrop"/>
-
-            <LinearLayout
-                android:id="@+id/recipeDetails3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/recipeImage3"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/recipeName3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recipe Name"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/recipeDescription3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:textSize="14sp"/>
-
-
-                <TextView
-                    android:id="@+id/chefName3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chef: Chef's Name"
-                    android:textSize="14sp"/>
-            </LinearLayout>
-        </RelativeLayout>
+        android:layout_marginBottom="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"/>
 
         <!-- Botão de Teste de API -->
         <Button
@@ -212,5 +65,4 @@
             android:padding="16dp"
             android:layout_marginBottom="24dp"/>
 
-    </LinearLayout>
 </RelativeLayout>
