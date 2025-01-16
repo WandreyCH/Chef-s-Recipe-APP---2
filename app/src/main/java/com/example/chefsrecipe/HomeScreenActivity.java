@@ -1,10 +1,11 @@
 package com.example.chefsrecipe;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,11 +13,9 @@ import android.widget.RatingBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
@@ -29,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class HomeScreenActivity extends AppCompatActivity {
@@ -37,7 +35,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private RecipeAdapter recipeAdapter;
-    private List<Recipe> recipeList;
+    private List<Recipe> recipes;
 
     EditText searchBar;
     TextView topRatedTitle, recipeName, recipeName2, recipeName3,
@@ -67,8 +65,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recipeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recipeList = new ArrayList<>();
-        recipeAdapter = new RecipeAdapter(recipeList);
+        recipes = new ArrayList<>();
+        recipeAdapter = new RecipeAdapter();
         recyclerView.setAdapter(recipeAdapter);
 
 
@@ -84,10 +82,8 @@ public class HomeScreenActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Recipes");
-
         // Buscar receitas aleatórias do firebase
-        fetchRecipesFromFirebase();
+        fetchRecipes();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,40 +138,37 @@ public class HomeScreenActivity extends AppCompatActivity {
 
 //------------------------------
 
-        private void fetchRecipesFromFirebase() {
+        private void fetchRecipes() {
 
             // Buscar todas as receitas
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            DatabaseReference recipesRef = FirebaseDatabase.getInstance()
+                    .getReference("Recipes").child("TPsxE19MHWY6DXhkluDdvBkWGp33");
 
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    Log.d("HomeScreenActivity", "Iniciando fetch das receitas do Firebase...");
-                if (dataSnapshot.exists()) {
-                    // Itera sobre as receitas
+            recipesRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<Recipe> recipeList = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        // Acessa os dados diretamente do snapshot
-                        String name = snapshot.child("name").getValue(String.class);
-                        String description = snapshot.child("description").getValue(String.class);
-                        String chefName = snapshot.child("chefName").getValue(String.class);
-                        // Adiciona as informações à lista ou faz qualquer outra coisa necessária
-                        if (name != null && description != null && chefName != null) {
-                            // Aqui você pode usar as informações diretamente
-                            Log.d("Receita encontrada", "Nome: " + name + ", Descrição: " + description + ", Chef: " + chefName);
-
-                            // Exemplo: adicionar os dados à lista de receitas (se necessário)
-                            recipeList.add(new Recipe(name, description,snapshot.child("ingredients").getValue(String.class),
-                                    snapshot.child("preparation").getValue(String.class), chefName)); // Ou outro tipo de objeto se necessário
+                        Recipe recipe = snapshot.getValue(Recipe.class);
+                        if (recipe != null) {
+                            Log.d("RecipeDebug", "Loaded recipe: " + recipe.getName());
+                            Log.d("RecipeDebug", "Description: " + recipe.getDescription());
+                            Log.d("RecipeDebug", "Ingredients: " + recipe.getIngredients());
+                            Log.d("RecipeDebug", "Preparation: " + recipe.getPreparation());
+                            Log.d("RecipeDebug", "Chef: " + recipe.getChefName());
+                            recipeList.add(recipe);
+                        } else {
+                            Log.e("RecipeLoaded", "Recipe is null!");
                         }
                     }
-                    // Atualiza o adaptador para refletir as mudanças
+                    recipeAdapter.setRecipes(recipeList);
                     recipeAdapter.notifyDataSetChanged();
-                }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Tratar erro de leitura
-                    Log.e("FirebaseError", "Erro ao acessar o Firebase: " + databaseError.toException());
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("FirebaseError", "Error loading data: " + databaseError.getMessage());
+                    // Handle error
                 }
             });
         }

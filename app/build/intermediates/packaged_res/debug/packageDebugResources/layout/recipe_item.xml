@@ -29,6 +29,18 @@
             android:textSize="14sp"
             android:layout_marginTop="8dp"/>
 
+        <TextView
+            android:id="@+id/recipeIngredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingredients" />
+
+        <TextView
+            android:id="@+id/recipePreparation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preparation" />
+
         <!-- Exibir o nome do chef -->
         <TextView
             android:id="@+id/chefName"

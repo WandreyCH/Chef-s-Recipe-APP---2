@@ -3563,6 +3563,7 @@ id progress_horizontal
 id radio
 id ratio
 id recipeDescription
+id recipeIngredients
 id recipeName
 id recipePreparation
 id recipeRecyclerView

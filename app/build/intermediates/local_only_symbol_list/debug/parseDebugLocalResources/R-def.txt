@@ -40,6 +40,7 @@ id logo
 id logoutButton
 id main
 id recipeDescription
+id recipeIngredients
 id recipeName
 id recipePreparation
 id recipeRecyclerView

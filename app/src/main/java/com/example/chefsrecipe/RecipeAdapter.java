@@ -11,14 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
-    private List<Recipe> recipeList;
+    private List<Recipe> recipes = new ArrayList<>();
 
-    public RecipeAdapter(List<Recipe> recipeList) {
-        this.recipeList = recipeList;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     @Override
@@ -29,23 +30,32 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
-            Recipe recipe = recipeList.get(position);
-            holder.chefName.setText("Chef: " + recipe.getChefName());
-            holder.description.setText("Description: " + recipe.getDescription());
-            holder.name.setText("Recipe Name: " + recipe.getName());
+        Recipe recipe = recipes.get(position);
 
+        Log.d("RecipeAdapter", "Name: " + recipe.getName());
+        Log.d("RecipeAdapter", "Description: " + recipe.getDescription());
+        Log.d("RecipeAdapter", "Chef: " + recipe.getChefName());
 
-
-            // Carregar a imagem com Picasso ou Glide, por exemplo
+        // Bind data to TextViews
+        holder.name.setText(recipe.getName());
+        holder.description.setText(recipe.getDescription());
+        holder.ingredients.setText(recipe.getIngredients());
+        holder.preparation.setText(recipe.getPreparation());
+        holder.chefName.setText(recipe.getChefName());
 
     }
     @Override
     public int getItemCount() {
-        return recipeList.size(); // Retorna o número de receitas na lista
+        return recipes.size(); // Retorna o número de receitas na lista
     }
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
-        TextView name, description, chefName;
+        TextView name;
+        TextView description;
+        TextView chefName;
+        TextView ingredients;
+        TextView preparation;
+
 
 
         public RecipeViewHolder(View itemView) {
@@ -53,6 +63,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             name = itemView.findViewById(R.id.recipeName);
             description = itemView.findViewById((R.id.recipeDescription));
             chefName = itemView.findViewById(R.id.chefName);
+            ingredients = itemView.findViewById(R.id.recipeIngredients);
+            preparation = itemView.findViewById(R.id.recipePreparation);
 
             Log.d("RecipeViewHolder", "name: " + name);
             Log.d("RecipeViewHolder", "description: " + description);
