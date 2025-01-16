@@ -5,11 +5,13 @@ color black
 color blue
 color red
 color white
+color yellow
 drawable chef
 drawable homecook
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_profile
+drawable rating_bar
 drawable rounded_edittext
 id ButtonApiTests
 id action_profile
@@ -41,6 +43,8 @@ id logo
 id logoutButton
 id main
 id preparation
+id ratingBar
+id ratingStars
 id recipeComment
 id recipeDescription
 id recipeDetails

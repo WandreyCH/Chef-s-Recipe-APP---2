@@ -8,6 +8,7 @@
     <color name="blue">#314492</color>
     <color name="red">#FF4B4B</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="yellow">#E6D741</color>
     <string name="app_name">ChefsRecipe</string>
     <string name="firebase_database_url" translatable="false">https://chef-s-recipe-app-e0cae-default-rtdb.firebaseio.com</string>
     <string name="gcm_defaultSenderId" translatable="false">740755362204</string>

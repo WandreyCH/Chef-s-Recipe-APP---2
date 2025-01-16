@@ -16,12 +16,12 @@
         "source": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-main-42:\\layout\\activity_create_recipe.xml"
     },
     {
-        "merged": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-debug-40:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-main-42:\\drawable\\ic_launcher_background.xml"
+        "merged": "com.example.chefsrecipe.app-debug-40:/drawable_rating_bar.xml.flat",
+        "source": "com.example.chefsrecipe.app-main-42:/drawable/rating_bar.xml"
     },
     {
-        "merged": "com.example.chefsrecipe.app-debug-40:/layout_activity_recipe_details.xml.flat",
-        "source": "com.example.chefsrecipe.app-main-42:/layout/activity_recipe_details.xml"
+        "merged": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-debug-40:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-main-42:\\drawable\\ic_launcher_background.xml"
     },
     {
         "merged": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-debug-40:\\layout_activity_home_cook_profile.xml.flat",
@@ -30,6 +30,10 @@
     {
         "merged": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-debug-40:\\menu_toolbar_menu.xml.flat",
         "source": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-main-42:\\menu\\toolbar_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-debug-40:\\drawable_rating_bar.xml.flat",
+        "source": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-main-42:\\drawable\\rating_bar.xml"
     },
     {
         "merged": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-debug-40:\\xml_backup_rules.xml.flat",
