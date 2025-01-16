@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChefsRecipe"
         tools:targetApi="31">
-
+        <activity
+            android:name=".RecipeDetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".UpdateScreenActivity"
             android:exported="false" />
@@ -39,7 +41,7 @@
             android:exported="false" />
         <activity
             android:name=".TestApiActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".SplashViewActivity"
             android:exported="true">

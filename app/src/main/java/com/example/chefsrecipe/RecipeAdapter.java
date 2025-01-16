@@ -18,6 +18,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     private List<Recipe> recipes = new ArrayList<>();
 
+    public RecipeAdapter(List<Recipe> filteredRecipes, Object navigateToRecipeDetails) {
+        this.recipes = filteredRecipes;
+    }
+
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }

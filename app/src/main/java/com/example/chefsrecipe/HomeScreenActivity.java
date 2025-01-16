@@ -86,7 +86,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recipes = new ArrayList<>();
-        recipeAdapter = new RecipeAdapter();
+        recipeAdapter = new RecipeAdapter(recipes, filteredRecipes);
         recyclerView.setAdapter(recipeAdapter);
 
 
@@ -235,5 +235,10 @@ public class HomeScreenActivity extends AppCompatActivity {
                     // Handle error
                 }
             });
+        }
+        private void navigateToRecipeDetails(){
+            Intent intent = new Intent(HomeScreenActivity.this, RecipeDetailsActivity.class); // Direciona para a tela de login
+            startActivity(intent);
+            finish();  // Finaliza a atividade atual
         }
 }
