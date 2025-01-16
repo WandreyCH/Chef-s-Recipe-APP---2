@@ -3,6 +3,7 @@ package com.example.chefsrecipe;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,8 +24,14 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.RequestBody;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
+
+    private static final String API_KEY = "nghgU/xbrOsjWJHm8R/amA==78Hk0ZQil4itXi9X";
 
     private TextView recipeName, recipeDescription,
             chefName, ingredients, preparation;
@@ -90,16 +97,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 Toast.makeText(RecipeDetailsActivity.this, "Please enter an ingredient", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void searchCalories(String ingredient) {
-        // URL da API de nutrição (substitua pelo seu endpoint correto)
-        String url = "https://api.example.com/nutrition?ingredient=" + ingredient;
-
-        // Criação da requisição
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
 
         // Obter o role do usuário do Firebase
         String userId = mAuth.getCurrentUser().getUid();
@@ -128,11 +125,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                     }
                 });
 
-
-        //---------------- API -------------- //
-        // Lógica para pesquisar no campo de pesquisa
-
-
         // Adiciona a lógica para salvar a avaliação quando o botão for clicado
         saveProfileButton.setOnClickListener(v -> {
             // Obtém a avaliação do RatingBar
@@ -156,12 +148,70 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         });
     }
 
+    //---------------- API -------------- //
+    // Lógica para pesquisar no campo de pesquisa
+    private void searchCalories(String ingredient) {
+        // URL da API de nutrição (substitua pelo seu endpoint correto)
+        String url = "https://api.calorieninjas.com/v1/nutrition?query=" + ingredient;
+
+        // Criação da requisição
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("X-Api-Key", API_KEY)
+                .build();
+
+        // Executar a requisição de forma assíncrona
+        new Thread(() -> {
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()) {
+                    // Lê a resposta e converte para o objeto NutritionItem
+                    String responseData = response.body().string();
+                    if (responseData != null && !responseData.isEmpty()) {
+                        // Usando Gson para parse da resposta
+                        Gson gson = new Gson();
+                        JsonObject jsonResponse = gson.fromJson(responseData, JsonObject.class);
+                        JsonArray items = jsonResponse.getAsJsonArray("items");
+
+                        // Exibindo os dados de calorias
+                        if (items != null && items.size() > 0) {
+                            NutritionItem nutritionItem = gson.fromJson(items.get(0), NutritionItem.class);
+                            runOnUiThread(() -> {
+                                if (nutritionItem != null) {
+                                    caloriesResult.setText("Calories: " + nutritionItem.getCalories());
+                                }
+                            });
+                        } else {
+                            runOnUiThread(() -> {
+                                caloriesResult.setText("No data available");
+                            });
+                        }
+                    } else {
+                        runOnUiThread(() -> {
+                            Toast.makeText(RecipeDetailsActivity.this, "No data available", Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                } else {
+                    runOnUiThread(() -> {
+                        Toast.makeText(RecipeDetailsActivity.this, "Error retrieving data: " + response.code(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            } catch (IOException e) {
+                runOnUiThread(() -> {
+                    Toast.makeText(RecipeDetailsActivity.this, "API call failed", Toast.LENGTH_SHORT).show();
+                });
+            }
+        }).start();
+    }
+
+
     // Classe para armazenar os dados da avaliação
     public static class Review {
         public float rating;
         public String comment;
 
-        public Review() { }
+        public Review() {
+        }
 
         public Review(float rating, String comment) {
             this.rating = rating;

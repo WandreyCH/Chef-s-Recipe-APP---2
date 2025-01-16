@@ -15,10 +15,12 @@ drawable rounded_edittext
 id ButtonApiTests
 id action_profile
 id addIngredientButton
+id apiSearch
 id buttonQuery1
 id buttonQuery2
 id buttonStart
 id cPassword
+id caloriesResult
 id chefDescription
 id chefImage
 id chefName
@@ -34,6 +36,7 @@ id forgotPasswordText
 id hcAge
 id hcImage
 id hcNameText
+id ingredientEditText
 id ingredientInput
 id ingredients
 id ingredientsListView
@@ -58,6 +61,7 @@ id saveProfileButton
 id saveRecipeButton
 id savedDescriptionText
 id searchBar
+id searchCaloriesButton
 id submitButton
 id toolbar
 id topRatedTitle

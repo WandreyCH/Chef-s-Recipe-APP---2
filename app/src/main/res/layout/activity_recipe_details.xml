@@ -95,7 +95,7 @@
         android:id="@+id/searchCaloriesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search Calories"
+        android:text="Search Calories (per 100 g)"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"/>
 
@@ -111,7 +111,7 @@
         android:id="@+id/recipeComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Write a description about the recipe"
+        android:hint="Write a comment about the recipe"
         android:inputType="textMultiLine"
         android:gravity="top"
         android:minHeight="120dp"
