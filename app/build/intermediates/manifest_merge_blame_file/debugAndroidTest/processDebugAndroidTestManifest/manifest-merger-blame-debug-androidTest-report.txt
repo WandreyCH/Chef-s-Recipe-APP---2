@@ -3,24 +3,24 @@
 3    package="com.example.chefsrecipe.test" >
 4
 5    <uses-sdk
-5-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:5:5-74
+5-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:5:5-74
 6        android:minSdkVersion="28"
-6-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:5:15-41
+6-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:5:15-41
 7        android:targetSdkVersion="34" />
-7-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:5:42-71
+7-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:5:42-71
 8
 9    <instrumentation
-9-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:11:5-15:73
+9-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:11:5-15:73
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:11:22-76
+10-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:11:22-76
 11        android:functionalTest="false"
-11-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:14:22-52
+11-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:14:22-52
 12        android:handleProfiling="false"
-12-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:13:22-53
+12-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:13:22-53
 13        android:label="Tests for com.example.chefsrecipe"
-13-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:15:22-71
+13-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:15:22-71
 14        android:targetPackage="com.example.chefsrecipe" />
-14-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:12:22-69
+14-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:12:22-69
 15
 16    <queries>
 16-->[androidx.test:runner:1.6.1] C:\Users\wandr\.gradle\caches\transforms-4\bf81d9c7294bccec442bd005102fe2ee\transformed\runner-1.6.1\AndroidManifest.xml:24:5-28:15
@@ -40,12 +40,12 @@
 22-->[androidx.test:core:1.6.1] C:\Users\wandr\.gradle\caches\transforms-4\a88bec9b92cbb11705357b24ba4a2f5d\transformed\core-1.6.1\AndroidManifest.xml:24:22-69
 23
 24    <application
-24-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:7:5-9:19
+24-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:7:5-9:19
 25        android:debuggable="true"
 26        android:extractNativeLibs="false" >
 27        <uses-library android:name="android.test.runner" />
-27-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:8:9-60
-27-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest567399488223645876.xml:8:23-57
+27-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:8:9-60
+27-->C:\Users\wandr\AndroidStudioProjects\ChefsRecipe\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest10595899380641370970.xml:8:23-57
 28
 29        <activity
 29-->[androidx.test:core:1.6.1] C:\Users\wandr\.gradle\caches\transforms-4\a88bec9b92cbb11705357b24ba4a2f5d\transformed\core-1.6.1\AndroidManifest.xml:27:9-34:20

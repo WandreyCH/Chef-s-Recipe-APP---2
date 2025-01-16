@@ -32,6 +32,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.ChefsRecipe" >
         <activity
+            android:name="com.example.chefsrecipe.RecipeDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.chefsrecipe.UpdateScreenActivity"
             android:exported="false" />
         <activity

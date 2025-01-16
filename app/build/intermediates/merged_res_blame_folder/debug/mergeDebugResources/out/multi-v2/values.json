@@ -372,10 +372,10 @@
                     "from": {
                         "startLines": "2,1",
                         "startColumns": "4,4",
-                        "startOffsets": "67,17",
+                        "startOffsets": "65,16",
                         "endLines": "5,1",
                         "endColumns": "19,48",
-                        "endOffsets": "179,61"
+                        "endOffsets": "174,60"
                     },
                     "to": {
                         "startLines": "2,2004",

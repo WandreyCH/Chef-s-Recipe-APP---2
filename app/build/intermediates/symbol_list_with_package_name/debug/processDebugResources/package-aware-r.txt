@@ -3565,6 +3565,7 @@ id ratio
 id recipeDescription
 id recipeDetails1
 id recipeImage
+id recipeIngredients
 id recipeName
 id recipePreparation
 id recipeRecyclerView
@@ -3844,6 +3845,7 @@ layout activity_home_cook_profile
 layout activity_home_screen
 layout activity_login_screen
 layout activity_main
+layout activity_recipe_details
 layout activity_sign_up
 layout activity_splash_view
 layout activity_update_screen
