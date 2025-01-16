@@ -1,6 +1,5 @@
 package com.example.chefsrecipe;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +8,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 public class RecipeDetailsActivity extends AppCompatActivity {
 
     private TextView recipeName, recipeDescription,
@@ -27,18 +24,14 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
     private EditText recipeComment;
     private Button saveProfileButton;
-    private RatingBar ratingBar;
+    private RatingBar ratingBar; // Declare o RatingBar
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private String recipeId; // ID da receita para salvar os dados nela
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_recipe_details);
-
 
         recipeName = findViewById(R.id.recipeName);
         recipeDescription = findViewById(R.id.recipeDescription);
@@ -47,7 +40,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         preparation = findViewById(R.id.preparation);
         recipeComment = findViewById(R.id.recipeComment);
         saveProfileButton = findViewById(R.id.saveProfileButton);
-        ratingBar = findViewById(R.id.ratingBar);
+        ratingBar = findViewById(R.id.ratingBar); // Inicialize o RatingBar
 
         // Inicializando Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -59,42 +52,40 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         String chef = getIntent().getStringExtra("chefName");
         String ingredientList = getIntent().getStringExtra("ingredients");
         String prep = getIntent().getStringExtra("preparation");
-        recipeId = getIntent().getStringExtra("recipeId");
 
         // Defina os valores nas TextViews
         recipeName.setText(name);
         recipeDescription.setText("Description: " + description);
-        chefName.setText("Chef: " +chef);
-        ingredients.setText("Ingredients: " +ingredientList);
-        preparation.setText("Preparation Method: " +prep);
-
+        chefName.setText("Chef: " + chef);
+        ingredients.setText("Ingredients: " + ingredientList);
+        preparation.setText("Preparation Method: " + prep);
 
         // Obter o role do usuário do Firebase
         String userId = mAuth.getCurrentUser().getUid();
         mDatabase.child("Users").child(userId)
                 .child("role").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String role = dataSnapshot.getValue(String.class);
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String role = dataSnapshot.getValue(String.class);
 
-                if ("Home Cook".equals(role)) {
-                    // Torna visível a caixa de comentário e o botão apenas se for "Home Cook"
-                    recipeComment.setVisibility(View.VISIBLE);
-                    saveProfileButton.setVisibility(View.VISIBLE);
-                    ratingBar.setVisibility(View.VISIBLE);
-                } else {
-                    // Caso contrário, mantêm-se invisíveis
-                    recipeComment.setVisibility(View.GONE);
-                    saveProfileButton.setVisibility(View.GONE);
-                    ratingBar.setVisibility(View.GONE);
-                }
-            }
+                        if ("Home Cook".equals(role)) {
+                            // Torna visível a caixa de comentário, o RatingBar e o botão apenas se for "Home Cook"
+                            recipeComment.setVisibility(View.VISIBLE);
+                            ratingBar.setVisibility(View.VISIBLE); // Torna o RatingBar visível
+                            saveProfileButton.setVisibility(View.VISIBLE);
+                        } else {
+                            // Caso contrário, mantém-se invisíveis
+                            recipeComment.setVisibility(View.GONE);
+                            ratingBar.setVisibility(View.GONE); // Torna o RatingBar invisível
+                            saveProfileButton.setVisibility(View.GONE);
+                        }
+                    }
 
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(RecipeDetailsActivity.this, "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(RecipeDetailsActivity.this, "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         // Adiciona a lógica para salvar a avaliação quando o botão for clicado
         saveProfileButton.setOnClickListener(v -> {
@@ -106,10 +97,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
             // Armazena a avaliação e o comentário no Firebase
             if (rating > 0 && !comment.isEmpty()) {
-
-                Review review = new Review(rating, comment);
-
-                mDatabase.child("Recipes").child(recipeId).child("reviews").push().setValue(review)
+                mDatabase.child("RecipeReviews").child(userId).push().setValue(new Review(rating, comment))
                         .addOnSuccessListener(aVoid -> {
                             Toast.makeText(RecipeDetailsActivity.this, "Review saved successfully!", Toast.LENGTH_SHORT).show();
                         })

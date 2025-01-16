@@ -11,7 +11,6 @@ drawable homecook
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_profile
-drawable rating_bar
 drawable rounded_edittext
 id ButtonApiTests
 id action_profile
@@ -46,6 +45,7 @@ id preparation
 id ratingBar
 id ratingStars
 id recipeComment
+id recipeCommentsText
 id recipeDescription
 id recipeDetails
 id recipeImage
