@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,11 +38,10 @@ public class HomeScreenActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private RecipeAdapter recipeAdapter;
     private List<Recipe> recipes;
+    private List<Recipe> filteredRecipes;
 
     EditText searchBar;
-    TextView topRatedTitle, recipeName, recipeName2, recipeName3,
-            recipeDescription, recipeDescription2, recipeDescription3,
-            chefName, chefName2, chefName3;
+    TextView topRatedTitle;
     RatingBar ratingBar1;
     Button apiTestButton;
     RecyclerView recyclerView;
@@ -54,9 +55,28 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         // Inicialize componentes (pode ser útil para lógica futura)
         searchBar = findViewById(R.id.searchBar);
+        recipes = new ArrayList<>();
+        filteredRecipes = new ArrayList<>();
+        recipeAdapter = new RecipeAdapter(filteredRecipes, this::navigateToRecipeDetails);
         topRatedTitle = findViewById(R.id.topRatedTitle);
 
 
+        // Listener para a barra de pesquisa
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterRecipes(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+
+//----------------------------------------------
 
 //        ratingBar1 = findViewById(R.id.ratingBar1);
         apiTestButton = findViewById(R.id.ButtonApiTests);
@@ -84,7 +104,51 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         // Buscar receitas aleatórias do firebase
         fetchRecipes();
+        fetchSearchRecipes();
     }
+
+    private void filterRecipes(String query) {
+        filteredRecipes.clear();
+        for (Recipe recipe : recipes) {
+            if (recipe.getName().toLowerCase().contains(query.toLowerCase())) {
+                filteredRecipes.add(recipe);
+            }
+        }
+        recipeAdapter.notifyDataSetChanged();
+    }
+
+    //Método para buscar as receitas pelo nome
+    private void fetchSearchRecipes() {
+        DatabaseReference recipesRef = FirebaseDatabase.getInstance()
+                .getReference("Recipes").child("TPsxE19MHWY6DXhkluDdvBkWGp33");
+
+        recipesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                recipes.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Recipe recipe = snapshot.getValue(Recipe.class);
+                    if (recipe != null) {
+                        recipes.add(recipe);
+                    }
+                }
+                filterRecipes(searchBar.getText().toString()); // Atualiza com o filtro
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("FirebaseError", "Error loading data: " + databaseError.getMessage());
+            }
+        });
+    }
+
+    // Método para navegar para os detalhes da receita (pesquisa)
+    private void navigateToRecipeDetails(Recipe recipe) {
+        Intent intent = new Intent(this, RecipeDetailsActivity.class);
+        intent.putExtra("Recipe", (CharSequence) recipe);
+        startActivity(intent);
+    }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
