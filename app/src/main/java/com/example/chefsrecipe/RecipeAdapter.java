@@ -38,10 +38,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         // Bind data to TextViews
         holder.name.setText(recipe.getName());
-        holder.description.setText(recipe.getDescription());
-        holder.ingredients.setText(recipe.getIngredients());
-        holder.preparation.setText(recipe.getPreparation());
-        holder.chefName.setText(recipe.getChefName());
+        holder.description.setText("Description: " + recipe.getDescription());
+        holder.description.setTextSize(18);
+        holder.chefName.setText("Chef: "+ recipe.getChefName());
+        holder.chefName.setTextSize(18);
 
     }
     @Override
@@ -63,8 +63,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             name = itemView.findViewById(R.id.recipeName);
             description = itemView.findViewById((R.id.recipeDescription));
             chefName = itemView.findViewById(R.id.chefName);
-            ingredients = itemView.findViewById(R.id.recipeIngredients);
-            preparation = itemView.findViewById(R.id.recipePreparation);
+
 
             Log.d("RecipeViewHolder", "name: " + name);
             Log.d("RecipeViewHolder", "description: " + description);

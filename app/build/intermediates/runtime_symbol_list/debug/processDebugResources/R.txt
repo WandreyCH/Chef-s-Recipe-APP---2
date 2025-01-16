@@ -3562,7 +3562,8 @@ int id progress_horizontal 0x7f09018d
 int id radio 0x7f09018e
 int id ratio 0x7f09018f
 int id recipeDescription 0x7f090190
-int id recipeIngredients 0x7f09022f
+int id recipeDetails1 0x7f090232
+int id recipeImage 0x7f090236
 int id recipeName 0x7f090191
 int id recipePreparation 0x7f090192
 int id recipeRecyclerView 0x7f090193
