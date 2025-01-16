@@ -42,7 +42,9 @@ public class HomeScreenActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
     EditText searchBar;
-    TextView topRatedTitle;
+    TextView topRatedTitle, recipeName, recipeName2, recipeName3,
+            recipeDescription, recipeDescription2, recipeDescription3,
+            chefName, chefName2, chefName3;
     RatingBar ratingBar1;
     Button apiTestButton;
     RecyclerView recyclerView;
@@ -56,9 +58,10 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         // Inicialize componentes (pode ser útil para lógica futura)
         searchBar = findViewById(R.id.searchBar);
-        recipes = new ArrayList<>();
+        topRatedTitle = findViewById(R.id.topRatedTitle);
 
 //        ratingBar1 = findViewById(R.id.ratingBar1);
+
         apiTestButton = findViewById(R.id.ButtonApiTests);
 
 

@@ -25,7 +25,7 @@
                 android:scaleType="centerCrop"/>
 
             <LinearLayout
-                android:id="@+id/recipeDetails1"
+                android:id="@+id/recipeDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/recipeImage"

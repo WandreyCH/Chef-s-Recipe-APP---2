@@ -39,8 +39,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         // Bind data to TextViews
         holder.name.setText(recipe.getName());
         holder.description.setText(recipe.getDescription());
-        holder.ingredients.setText(recipe.getIngredients());
-        holder.preparation.setText(recipe.getPreparation());
+
         holder.chefName.setText(recipe.getChefName());
 
     }
@@ -53,8 +52,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         TextView name;
         TextView description;
         TextView chefName;
-        TextView ingredients;
-        TextView preparation;
+
 
 
 
@@ -63,13 +61,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             name = itemView.findViewById(R.id.recipeName);
             description = itemView.findViewById((R.id.recipeDescription));
             chefName = itemView.findViewById(R.id.chefName);
-            ingredients = itemView.findViewById(R.id.recipeIngredients);
-            preparation = itemView.findViewById(R.id.recipePreparation);
+
 
             Log.d("RecipeViewHolder", "name: " + name);
             Log.d("RecipeViewHolder", "description: " + description);
             Log.d("RecipeViewHolder", "chefName: " + chefName);
 
+            if (name == null || description == null || chefName == null) {
+                Log.e("RecipeAdapter", "Erro: Alguns campos não foram encontrados no layout.");
+            }
 
         }
 

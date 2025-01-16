@@ -40,7 +40,7 @@ id logo
 id logoutButton
 id main
 id recipeDescription
-id recipeDetails1
+id recipeDetails
 id recipeImage
 id recipeIngredients
 id recipeName
