@@ -74,6 +74,39 @@
     </LinearLayout>
 </RelativeLayout>
 
+
+    <TextView
+        android:id="@+id/apiSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recipeDescription"
+        android:layout_marginTop="8dp"
+        android:text="Would you like to search for the calories of the recipe? "
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/ingredientEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter ingredient name"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/searchCaloriesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Calories"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/caloriesResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories will appear here"
+        android:layout_marginTop="16dp"/>
+
+
     <EditText
         android:id="@+id/recipeComment"
         android:layout_width="match_parent"

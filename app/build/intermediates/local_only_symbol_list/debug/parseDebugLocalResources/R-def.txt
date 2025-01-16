@@ -45,7 +45,6 @@ id preparation
 id ratingBar
 id ratingStars
 id recipeComment
-id recipeCommentsText
 id recipeDescription
 id recipeDetails
 id recipeImage
