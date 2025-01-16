@@ -88,6 +88,18 @@
         android:background="@android:drawable/edit_text"
         android:visibility="gone" /> <!-- Default to gone -->
 
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="0"
+        android:layout_gravity="center"
+        android:isIndicator="false"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"/>
+
     <Button
         android:id="@+id/saveProfileButton"
         android:layout_width="wrap_content"
