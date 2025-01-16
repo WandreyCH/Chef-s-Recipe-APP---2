@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="8dp">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_edittext"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="50dp">
+
+    <ImageView
+        android:id="@+id/recipeImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/chef"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:id="@+id/recipeDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/recipeImage"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/recipeName"
@@ -13,20 +36,67 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/recipeDescription"
+        android:id="@+id/ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/recipeName"
         android:layout_marginTop="8dp"
-        android:text="Description"
+        android:text="Ingredients"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/recipeIngredients"
+        android:id="@+id/preparation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ingredients"
+        android:layout_marginTop="8dp"
+        android:text="Preparation Method"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/recipeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/preparation"
+        android:layout_marginTop="8dp"
+        android:text="Description"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/chefName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/recipeDescription"
-        android:layout_marginTop="16dp"
-        android:text="Ingredients"
+        android:layout_marginTop="8dp"
+        android:text="Chef: "
         android:textSize="16sp" />
+    </LinearLayout>
 </RelativeLayout>
+
+    <EditText
+        android:id="@+id/recipeComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write a description about the recipe"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:minHeight="120dp"
+        android:layout_below="@+id/recipeImage"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/edit_text"
+        android:visibility="gone" /> <!-- Default to gone -->
+
+    <Button
+        android:id="@+id/saveProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/recipeComment"
+        android:background="@drawable/rounded_edittext"
+        android:text="Save Comment"
+        android:visibility="gone" /> <!-- Default to gone -->
+
+</LinearLayout>

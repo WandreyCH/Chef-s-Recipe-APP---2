@@ -1,5 +1,6 @@
 package com.example.chefsrecipe;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,9 +39,23 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         // Bind data to TextViews
         holder.name.setText(recipe.getName());
-        holder.description.setText(recipe.getDescription());
+        holder.description.setText("Description: " + recipe.getDescription());
+        holder.chefName.setText("Chef: " + recipe.getChefName());
+        holder.ingredients.setText("Ingredients: " + recipe.getIngredients());
+        holder.preparation.setText("Preparation Method: " + recipe.getPreparation());
 
-        holder.chefName.setText(recipe.getChefName());
+        // Defina um listener de clique
+        holder.itemView.setOnClickListener(v -> {
+            // Crie uma intent para a tela de detalhes da receita
+            Intent intent = new Intent(v.getContext(), RecipeDetailsActivity.class);
+            // Passe os dados da receita para a nova atividade
+            intent.putExtra("recipeName", recipe.getName());
+            intent.putExtra("recipeDescription", recipe.getDescription());
+            intent.putExtra("chefName", recipe.getChefName());
+            intent.putExtra("ingredients", recipe.getIngredients());
+            intent.putExtra("preparation", recipe.getPreparation());
+            v.getContext().startActivity(intent);
+        });
 
     }
     @Override
@@ -52,6 +67,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         TextView name;
         TextView description;
         TextView chefName;
+        TextView ingredients;
+        TextView preparation;
 
 
 
@@ -61,6 +78,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             name = itemView.findViewById(R.id.recipeName);
             description = itemView.findViewById((R.id.recipeDescription));
             chefName = itemView.findViewById(R.id.chefName);
+            ingredients = itemView.findViewById(R.id.ingredients);
+            preparation = itemView.findViewById(R.id.preparation);
 
 
             Log.d("RecipeViewHolder", "name: " + name);
@@ -71,8 +90,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 Log.e("RecipeAdapter", "Erro: Alguns campos não foram encontrados no layout.");
             }
 
+            // Adicionando o OnClickListener para o item
+            itemView.setOnClickListener(v -> {
+                // Passar os dados da receita para a nova Activity
+                Recipe recipe = recipes.get(getAdapterPosition()); // Pega a receita clicada
+                Intent intent = new Intent(itemView.getContext(), RecipeDetailsActivity.class); // Nome da nova Activity
+                intent.putExtra("recipe_name", recipe.getName());
+                intent.putExtra("recipe_description", recipe.getDescription());
+                intent.putExtra("recipe_chef", recipe.getChefName());
+                // Você pode passar outros dados necessários
+                itemView.getContext().startActivity(intent); // Inicia a nova Activity
+            });
+        }
+
         }
 
     }
-
-}

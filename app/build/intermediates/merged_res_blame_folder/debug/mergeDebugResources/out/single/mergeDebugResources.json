@@ -24,6 +24,10 @@
         "source": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-main-42:\\drawable\\ic_launcher_background.xml"
     },
     {
+        "merged": "com.example.chefsrecipe.app-debug-40:/layout_activity_recipe_details.xml.flat",
+        "source": "com.example.chefsrecipe.app-main-42:/layout/activity_recipe_details.xml"
+    },
+    {
         "merged": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-debug-40:\\layout_activity_home_cook_profile.xml.flat",
         "source": "C:\\Users\\wandr\\.gradle\\daemon\\8.7\\com.example.chefsrecipe.app-main-42:\\layout\\activity_home_cook_profile.xml"
     },

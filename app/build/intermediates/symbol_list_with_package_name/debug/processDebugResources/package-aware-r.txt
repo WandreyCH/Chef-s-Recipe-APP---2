@@ -3423,6 +3423,7 @@ id included
 id indeterminate
 id info
 id ingredientInput
+id ingredients
 id ingredientsListView
 id invisible
 id inward
@@ -3557,15 +3558,16 @@ id percent
 id pin
 id position
 id postLayout
+id preparation
 id pressed
 id progress_circular
 id progress_horizontal
 id radio
 id ratio
+id recipeComment
 id recipeDescription
 id recipeDetails
 id recipeImage
-id recipeIngredients
 id recipeName
 id recipePreparation
 id recipeRecyclerView
